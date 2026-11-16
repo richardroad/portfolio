@@ -100,15 +100,15 @@
     const dot = c.querySelector('.dot'), ring = c.querySelector('.ring');
     let mx = -100, my = -100, rx = -100, ry = -100, moving = false;
     const loop = () => {
-      rx += (mx - rx) * (reduced ? 1 : .18); ry += (my - ry) * (reduced ? 1 : .18);
-      ring.style.transform = `translate(${rx}px,${ry}px)`;
+      rx += (mx - rx) * (reduced ? 1 : .32); ry += (my - ry) * (reduced ? 1 : .32);
+      dot.style.transform = `translate3d(${mx}px,${my}px,0)`;
+      ring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
       if (Math.abs(mx - rx) + Math.abs(my - ry) > .2) requestAnimationFrame(loop); else moving = false;
     };
     addEventListener('pointermove', (e) => {
       if (e.pointerType !== 'mouse') return;
       mx = e.clientX; my = e.clientY;
-      dot.style.transform = `translate(${mx}px,${my}px)`;
-      c.classList.add('on');
+      if (!c.classList.contains('on')) c.classList.add('on');
       if (!moving) { moving = true; requestAnimationFrame(loop); }
     }, { passive: true });
     document.addEventListener('pointerover', (e) => {
