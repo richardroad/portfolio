@@ -4,20 +4,34 @@
   root.classList.add('js');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Autoplay guard: Safari only autoplays when the *property* muted is true (the attribute alone
-  // is not always enough, e.g. when markup is injected). Kick every autoplay video explicitly,
-  // and retry on the first touch/click if the browser still refused (Low Power Mode etc.).
-  const vids = [...document.querySelectorAll('video[autoplay]')];
-  const kick = () => vids.forEach((v) => {
-    v.muted = true; v.defaultMuted = true; v.playsInline = true;
-    if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+  // Autoplay guard. Safari only autoplays when the muted *property* is true, so set it and call play().
+  // If a video still has not started after a few seconds (blocked, or the host cannot stream it),
+  // swap it for an image: an animated WebP when data-fallback is given, otherwise its poster.
+  // The page never shows an empty box.
+  document.querySelectorAll('video[autoplay]').forEach((v) => {
+    let ok = false, swapped = false;
+    const start = () => {
+      v.muted = true; v.defaultMuted = true; v.playsInline = true;
+      if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    };
+    const swap = () => {
+      if (ok || swapped || !v.isConnected) return;
+      const src = v.getAttribute('data-fallback') || v.getAttribute('poster');
+      if (!src) return;
+      swapped = true;
+      const img = new Image();
+      img.className = v.className;
+      img.alt = v.getAttribute('aria-label') || '';
+      if (v.getAttribute('aria-hidden')) img.setAttribute('aria-hidden', 'true');
+      img.onload = () => v.replaceWith(img);
+      img.src = src;
+    };
+    v.addEventListener('timeupdate', () => { if (v.currentTime > 0.05) ok = true; });
+    v.addEventListener('error', swap);
+    start();
+    ['pointerdown', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, () => { if (!ok) start(); }, { once: true, passive: true }));
+    setTimeout(swap, 3500);
   });
-  if (vids.length) {
-    kick();
-    addEventListener('load', kick, { once: true });
-    ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach((ev) => addEventListener(ev, kick, { once: true, passive: true }));
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
-  }
 
   // A fresh visit via a link always starts at the top (some browsers restore an old position).
   // Back/forward and reload keep the browser's usual restore.
