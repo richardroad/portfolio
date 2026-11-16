@@ -4,6 +4,19 @@
   root.classList.add('js');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // A fresh visit via a link always starts at the top (some browsers restore an old position).
+  // Back/forward and reload keep the browser's usual restore.
+  const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if ((!nav || nav.type === 'navigate') && !location.hash) {
+    const top = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    top();
+    addEventListener('pagereveal', top);
+    addEventListener('load', () => { if (scrollY && !window.__rrUserScrolled) top(); });
+    addEventListener('wheel', () => { window.__rrUserScrolled = true; }, { once: true, passive: true });
+    addEventListener('touchstart', () => { window.__rrUserScrolled = true; }, { once: true, passive: true });
+    addEventListener('keydown', () => { window.__rrUserScrolled = true; }, { once: true });
+  }
+
   // Preloader: shards of light fly in and assemble the RR mark, then the page is revealed.
   // Shown once per browser session; the inline script in <head> adds .pre when it should run.
   const pre = document.querySelector('.preloader');
