@@ -72,19 +72,20 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Home: hero ---------- */
-.hero { position: relative; padding-top: env(safe-area-inset-top, 0px); }
+.hero { position: relative; padding-top: env(safe-area-inset-top, 0px); min-height: min(48vw, 700px); }
 .hero .wings {
-  position: absolute; inset: 0 0 auto; height: min(46vw, 640px);
-  background: url(../img/wings.webp) center top / cover no-repeat;
-  opacity: .25; pointer-events: none;
+  position: absolute; inset: 0;
+  background: url(../img/wings.webp) center top / 100% auto no-repeat;
+  opacity: .3; pointer-events: none;
+  -webkit-mask-image: linear-gradient(#000 72%, transparent); mask-image: linear-gradient(#000 72%, transparent);
 }
 .hero .logo {
   position: relative; z-index: 2; width: min(34vw, 380px); margin: clamp(-24px, -1vw, 0px) auto 0;
   mix-blend-mode: screen; animation: rise 1.6s ease-out both;
 }
 .stone-bars {
-  position: relative; z-index: 1; height: clamp(40px, 8vw, 96px); margin-top: clamp(-40px, -3vw, -10px);
-  background: url(../img/stone-bars.webp) center / 100% 100% no-repeat; opacity: .85;
+  position: relative; z-index: 1; height: clamp(34px, 6vw, 80px); margin-top: clamp(-30px, -2vw, -8px);
+  background: url(../img/stone-bars.webp) center / 100% 100% no-repeat; opacity: .7; mix-blend-mode: screen;
 }
 .menu {
   position: relative; z-index: 2;
@@ -103,12 +104,13 @@ a { color: inherit; text-decoration: none; }
 }
 .menu a:hover { color: #fff; text-shadow: 0 0 18px #c9a45c88; }
 .menu a:hover::after { width: 70%; left: 15%; }
-.dash { height: clamp(10px, 2vw, 22px); background: url(../img/divider-dash.webp) center / 100% 100% no-repeat; opacity: .8; }
+.dash { height: clamp(8px, 1.4vw, 18px); background: url(../img/divider-dash.webp) center / 100% 100% no-repeat; opacity: .75; mix-blend-mode: screen; }
 
 @media (max-width: 640px) {
   /* phone: bigger logo, bars and menu sit below the wings */
   /* logo sits fully above the wings */
-  .hero .wings { top: 16vw; height: 56vw; background-size: 100% auto; background-position: center top; opacity: .3; }
+  .hero { min-height: 0; }
+  .hero .wings { top: 16vw; bottom: auto; height: 56vw; -webkit-mask-image: none; mask-image: none; background-size: 100% auto; background-position: center top; opacity: .3; }
   .hero .logo { width: 72vw; margin-top: -7vw; margin-bottom: -6vw; }
   .stone-bars { margin-top: 42vw; height: 12vw; }
   /* stacked menu with spinning gold ornaments between the sections */
@@ -119,7 +121,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Home: portrait + profile ---------- */
-.shatter { position: relative; margin-top: clamp(20px, 4vw, 50px); }
+.shatter { position: relative; margin-top: clamp(24px, 6vw, 90px); }
 .shatter-stick { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
 .shatter canvas, .shatter-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .shatter canvas { opacity: 0; }
