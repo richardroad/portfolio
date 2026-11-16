@@ -4,6 +4,21 @@
   root.classList.add('js');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Autoplay guard: Safari only autoplays when the *property* muted is true (the attribute alone
+  // is not always enough, e.g. when markup is injected). Kick every autoplay video explicitly,
+  // and retry on the first touch/click if the browser still refused (Low Power Mode etc.).
+  const vids = [...document.querySelectorAll('video[autoplay]')];
+  const kick = () => vids.forEach((v) => {
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+  });
+  if (vids.length) {
+    kick();
+    addEventListener('load', kick, { once: true });
+    ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach((ev) => addEventListener(ev, kick, { once: true, passive: true }));
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
+  }
+
   // A fresh visit via a link always starts at the top (some browsers restore an old position).
   // Back/forward and reload keep the browser's usual restore.
   const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
