@@ -62,6 +62,78 @@
     })();
   });
 
+  // Scroll-driven frame sequence (home portrait shattering into glass)
+  const sh = document.querySelector('.shatter');
+  if (sh && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const N = 192;
+    const dir = Math.min(screen.width, innerWidth) < 760 ? 's' : 'l';
+    const canvas = sh.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    const frames = new Array(N);
+    const loaded = new Uint8Array(N);
+    let current = -1, want = 0, ticking = false;
+    sh.classList.add('scrub');
+
+    const src = (i) => `img/shatter/${dir}/${String(i + 1).padStart(3, '0')}.webp`;
+    function load(i) {
+      return new Promise((res) => {
+        const im = new Image();
+        im.decoding = 'async';
+        im.onload = () => { frames[i] = im; loaded[i] = 1; res(); };
+        im.onerror = res;
+        im.src = src(i);
+      });
+    }
+    function nearest(i) {
+      for (let d = 0; d < N; d++) {
+        if (i - d >= 0 && loaded[i - d]) return i - d;
+        if (i + d < N && loaded[i + d]) return i + d;
+      }
+      return -1;
+    }
+    function size() {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(canvas.clientWidth * dpr);
+      canvas.height = Math.round(canvas.clientHeight * dpr);
+      current = -1; draw();
+    }
+    function draw() {
+      ticking = false;
+      const r = sh.getBoundingClientRect();
+      const track = sh.offsetHeight - innerHeight;
+      const p = Math.min(1, Math.max(0, -r.top / (track || 1)));
+      sh.style.setProperty('--p', p.toFixed(4));
+      sh.style.setProperty('--hint', Math.max(0, 1 - p * 8).toFixed(3));
+      sh.style.setProperty('--reveal', Math.min(1, Math.max(0, (p - .8) / .15)).toFixed(3));
+      want = Math.round(p * (N - 1));
+      const i = nearest(want);
+      if (i < 0 || i === current) return;
+      current = i;
+      const im = frames[i], cw = canvas.width, ch = canvas.height;
+      const zoom = 1.08 - 0.08 * p;                   // slow push-out while scrolling
+      const s = Math.max(cw / im.width, ch / im.height) * zoom;
+      const w = im.width * s, h = im.height * s;
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+    }
+    const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(draw); } };
+    addEventListener('scroll', queue, { passive: true });
+    addEventListener('resize', size);
+
+    // first and last frames first, then the rest in order (every 4th first for a quick rough pass)
+    Promise.all([load(0), load(N - 1)]).then(() => {
+      sh.classList.add('ready');
+      size();
+      const order = [];
+      for (let i = 4; i < N - 1; i += 4) order.push(i);
+      for (let i = 1; i < N - 1; i++) if (i % 4) order.push(i);
+      let k = 0;
+      const next = () => { if (k < order.length) load(order[k++]).then(() => { if (Math.abs(order[k - 1] - want) < 3) { current = -1; queue(); } next(); }); };
+      for (let j = 0; j < 6; j++) next();   // 6 parallel loaders
+    });
+  }
+
   // Lightbox: any [data-full] inside a [data-gallery] group
   const groups = {};
   document.querySelectorAll('[data-gallery] [data-full]').forEach((el) => {
