@@ -326,3 +326,9 @@ a { color: inherit; text-decoration: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* desktop: no double stone bar above the menu */
+@media (min-width: 641px) {
+  .stone-bars { display: none; }
+  .menu { margin-top: clamp(16px, 3vw, 48px); }
+}
