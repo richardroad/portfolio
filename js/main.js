@@ -1,6 +1,125 @@
 // Shared behaviour: scroll reveal, lightbox, copy-email, hiding top bar, typing swap.
 (function () {
-  document.documentElement.classList.add('js');
+  const root = document.documentElement;
+  root.classList.add('js');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Preloader: shards of light fly in and assemble the RR mark, then the page is revealed.
+  // Shown once per browser session; the inline script in <head> adds .pre when it should run.
+  const pre = document.querySelector('.preloader');
+  if (pre && root.classList.contains('pre')) {
+    try { sessionStorage.setItem('rrSeen', '1'); } catch (e) {}
+    const cv = pre.querySelector('canvas'), mark = pre.querySelector('img');
+    const cx = cv.getContext('2d');
+    let finished = false;
+    const finish = () => {
+      if (finished) return; finished = true;
+      pre.classList.add('formed');
+      setTimeout(() => {
+        pre.classList.add('out');
+        root.classList.remove('pre');
+        setTimeout(() => pre.remove(), 900);
+      }, 650);
+    };
+    pre.addEventListener('click', finish);
+    setTimeout(finish, 4500);                       // never hold the page hostage
+
+    const go = () => {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const W = cv.width = innerWidth * dpr, H = cv.height = innerHeight * dpr;
+      const r = mark.getBoundingClientRect();
+      if (!mark.naturalWidth || !r.width) return finish();
+      // sample bright pixels of the mark at its on-screen size
+      const sw = Math.round(r.width), sh = Math.round(r.height);
+      const off = document.createElement('canvas'); off.width = sw; off.height = sh;
+      const oc = off.getContext('2d'); oc.drawImage(mark, 0, 0, sw, sh);
+      let data;
+      try { data = oc.getImageData(0, 0, sw, sh).data; } catch (e) { return finish(); }
+      const step = innerWidth < 700 ? 3 : 3, pts = [];
+      for (let y = 0; y < sh; y += step) for (let x = 0; x < sw; x += step) {
+        const k = (y * sw + x) * 4, v = (data[k] + data[k + 1] + data[k + 2]) / 3;
+        if (v > 42 && Math.random() < .85) {
+          const a = Math.random() * Math.PI * 2, d = (.55 + Math.random() * .7) * Math.max(W, H);
+          pts.push({
+            tx: (r.left + x) * dpr, ty: (r.top + y) * dpr, v,
+            sx: W / 2 + Math.cos(a) * d, sy: H / 2 + Math.sin(a) * d,
+            rot: (Math.random() - .5) * 10, delay: Math.random() * .4, s: (1.2 + Math.random() * 2.4) * dpr, gold: Math.random() < .12
+          });
+        }
+      }
+      const T = 1900, t0 = performance.now();
+      const ease = (t) => 1 - Math.pow(1 - t, 4);
+      (function frame(now) {
+        if (finished) return;
+        const g = (now - t0) / T;
+        cx.globalCompositeOperation = 'source-over';
+        cx.fillStyle = 'rgba(0,0,0,.35)'; cx.fillRect(0, 0, W, H);   // short light trails
+        cx.globalCompositeOperation = 'lighter';
+        for (const p of pts) {
+          const t = Math.min(1, Math.max(0, (g - p.delay) / (1 - .45)));
+          const e = ease(t), x = p.sx + (p.tx - p.sx) * e, y = p.sy + (p.ty - p.sy) * e;
+          const sz = p.s * (1 + (1 - e) * 4), l = Math.min(255, p.v * (1.2 + (1 - e) * 2));
+          cx.globalAlpha = Math.min(1, t * 4) * (.55 + .45 * e);
+          cx.fillStyle = p.gold ? `rgb(${l},${l * .78 | 0},${l * .42 | 0})` : `rgb(${l},${l * .97 | 0},${l * .92 | 0})`;
+          cx.save(); cx.translate(x, y); cx.rotate(p.rot * (1 - e));
+          cx.fillRect(-sz / 2, -sz / 6, sz, sz / 3 + 1);   // thin glass-like shards
+          cx.restore();
+        }
+        if (g < 1.02) requestAnimationFrame(frame);
+        else { finish(); cv.style.transition = 'opacity .6s'; cv.style.opacity = 0; }
+      })(t0);
+    };
+    if (mark.complete && mark.naturalWidth) requestAnimationFrame(go);
+    else { mark.addEventListener('load', go); mark.addEventListener('error', finish); }
+  }
+
+  // Page transitions. Modern browsers use the CSS view transition; others get a short blur-out here.
+  if (!reduced && !('onpagereveal' in window)) {
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href]');
+      if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (a.target === '_blank' || a.hasAttribute('download')) return;
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin || (url.pathname === location.pathname && url.hash)) return;
+      e.preventDefault();
+      try { sessionStorage.setItem('rrNav', '1'); } catch (err) {}
+      root.classList.add('leaving');
+      setTimeout(() => { location.href = url.href; }, 360);
+    });
+    addEventListener('pageshow', (e) => { if (e.persisted) root.classList.remove('leaving', 'enter'); });
+  }
+
+  // Custom cursor: gold dot + trailing ring, mouse/trackpad only
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const c = document.createElement('div');
+    c.className = 'cursor';
+    c.setAttribute('aria-hidden', 'true');
+    c.innerHTML = '<i class="ring"><b data-label="view"></b></i><i class="dot"></i>';
+    document.body.appendChild(c);
+    root.classList.add('has-cursor');
+    const dot = c.querySelector('.dot'), ring = c.querySelector('.ring');
+    let mx = -100, my = -100, rx = -100, ry = -100, moving = false;
+    const loop = () => {
+      rx += (mx - rx) * (reduced ? 1 : .18); ry += (my - ry) * (reduced ? 1 : .18);
+      ring.style.transform = `translate(${rx}px,${ry}px)`;
+      if (Math.abs(mx - rx) + Math.abs(my - ry) > .2) requestAnimationFrame(loop); else moving = false;
+    };
+    addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      c.classList.add('on');
+      if (!moving) { moving = true; requestAnimationFrame(loop); }
+    }, { passive: true });
+    document.addEventListener('pointerover', (e) => {
+      const t = e.target.closest && e.target.closest('[data-full], a, button, [role="button"], label');
+      c.classList.toggle('view', !!(t && t.matches('[data-full]')));
+      c.classList.toggle('link', !!(t && !t.matches('[data-full]')));
+    });
+    document.addEventListener('mouseleave', () => c.classList.remove('on'));
+    addEventListener('pointerdown', () => c.classList.add('down'));
+    addEventListener('pointerup', () => c.classList.remove('down'));
+  }
 
   // Reveal on scroll
   const io = 'IntersectionObserver' in window
