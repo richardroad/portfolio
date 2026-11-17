@@ -226,7 +226,7 @@
   // Scroll-driven frame sequence (home portrait shattering into glass)
   const sh = document.querySelector('.shatter');
   if (sh && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const N = 192;
+    const N = 153;                                   // clip ends on the cracked face (no fade to black)
     const dir = Math.min(screen.width, innerWidth) < 760 ? 's' : 'l';
     const canvas = sh.querySelector('canvas');
     const ctx = canvas.getContext('2d');
@@ -240,7 +240,11 @@
       return new Promise((res) => {
         const im = new Image();
         im.decoding = 'async';
-        im.onload = () => { frames[i] = im; loaded[i] = 1; res(); };
+        im.onload = () => {
+          // decode up front so drawing during scroll does not stall
+          const done = () => { frames[i] = im; loaded[i] = 1; res(); };
+          im.decode ? im.decode().then(done, done) : done();
+        };
         im.onerror = res;
         im.src = src(i);
       });
@@ -258,28 +262,33 @@
       canvas.height = Math.round(canvas.clientHeight * dpr);
       current = -1; draw();
     }
-    function draw() {
-      ticking = false;
+    // pos = frame position that is drawn; it eases toward the scroll target so slow scrolling
+    // glides, and neighbouring frames are cross-faded so motion stays smooth between frames.
+    let pos = -1, target = 0, lastKey = '';
+    function progress() {
       const r = sh.getBoundingClientRect();
       const track = sh.offsetHeight - innerHeight;
       const p = Math.min(1, Math.max(0, -r.top / (track || 1)));
       sh.style.setProperty('--p', p.toFixed(4));
       sh.style.setProperty('--hint', Math.max(0, 1 - p * 8).toFixed(3));
-      sh.style.setProperty('--reveal', Math.min(1, Math.max(0, (p - .8) / .15)).toFixed(3));
-      want = Math.round(p * (N - 1));
-      const i = nearest(want);
-      if (i < 0 || i === current) return;
-      current = i;
-      const im = frames[i], cw = canvas.width, ch = canvas.height;
-      const zoom = 1.08 - 0.08 * p;                   // slow push-out while scrolling
+      sh.style.setProperty('--reveal', Math.min(1, Math.max(0, (p - .74) / .16)).toFixed(3));
+      // the clip plays over the first 80% of the scroll, then holds on the last frame
+      target = Math.min(1, p / .8) * (N - 1);
+      want = Math.round(target);
+      return p;
+    }
+    function paint(a, b, t, zoom) {
+      const cw = canvas.width, ch = canvas.height, im = frames[a];
+      const tall = cw / ch < 0.8;
       // The clip is vertical (9:16). Portrait screens: fill the screen. Landscape screens:
       // fit by height, centred, and dissolve the left/right edges into black.
-      const tall = cw / ch < 0.8;
       const s = (tall ? Math.max(cw / im.width, ch / im.height) : ch / im.height) * zoom;
       const w = im.width * s, h = im.height * s, x = (cw - w) / 2, y = (ch - h) / 2;
+      ctx.globalAlpha = 1;
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, cw, ch);
       ctx.drawImage(im, x, y, w, h);
+      if (b !== a && t > 0.02) { ctx.globalAlpha = t; ctx.drawImage(frames[b], x, y, w, h); ctx.globalAlpha = 1; }
       if (!tall) {
         const f = w * 0.22;
         for (const [x0, x1] of [[x, x + f], [x + w, x + w - f]]) {
@@ -289,6 +298,21 @@
           ctx.fillRect(Math.min(x0, x1), 0, f, ch);
         }
       }
+    }
+    function draw() {
+      ticking = false;
+      const p = progress();
+      if (pos < 0) pos = target;
+      pos += (target - pos) * 0.22;
+      if (Math.abs(target - pos) < 0.01) pos = target;
+      const f0 = Math.floor(pos), t = pos - f0;
+      const a = nearest(f0), bIdx = nearest(Math.min(N - 1, f0 + 1));
+      if (a < 0) return;
+      const b = (bIdx === f0 + 1) ? bIdx : a;          // only blend with a real neighbour
+      const zoom = 1.08 - 0.08 * Math.min(1, p / .8);  // slow push-out while the clip plays
+      const key = a + ':' + b + ':' + t.toFixed(2) + ':' + zoom.toFixed(3) + ':' + canvas.width;
+      if (key !== lastKey || current < 0) { paint(a, b, b === a ? 0 : t, zoom); lastKey = key; current = a; }
+      if (pos !== target) queue();
     }
     const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(draw); } };
     addEventListener('scroll', queue, { passive: true });

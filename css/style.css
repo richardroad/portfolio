@@ -128,7 +128,7 @@ a { color: inherit; text-decoration: none; }
   .hero .shine { top: 16vw; bottom: auto; height: 56vw; }
   .hero .wings { top: 16vw; bottom: auto; height: 56vw; -webkit-mask-image: none; mask-image: none; background-size: 100% auto; background-position: center top; opacity: .3; }
   .hero .logo { width: 72vw; margin-top: -7vw; margin-bottom: -6vw; }
-  .stone-bars { margin-top: 42vw; height: 12vw; }
+  .stone-bars { margin-top: 42vw; height: 12vw; background: none; }   /* bars hidden on phones; keeps the gap under the wings */
   /* stacked menu with spinning gold ornaments between the sections */
   .menu { grid-template-columns: 1fr; gap: 6px; justify-items: center; padding-block: 22px 26px; }
   .menu .orn { width: 26px; animation: spin 14s linear infinite; }
