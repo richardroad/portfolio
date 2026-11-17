@@ -272,11 +272,23 @@
       current = i;
       const im = frames[i], cw = canvas.width, ch = canvas.height;
       const zoom = 1.08 - 0.08 * p;                   // slow push-out while scrolling
-      const s = Math.max(cw / im.width, ch / im.height) * zoom;
-      const w = im.width * s, h = im.height * s;
+      // The clip is vertical (9:16). Portrait screens: fill the screen. Landscape screens:
+      // fit by height, centred, and dissolve the left/right edges into black.
+      const tall = cw / ch < 0.8;
+      const s = (tall ? Math.max(cw / im.width, ch / im.height) : ch / im.height) * zoom;
+      const w = im.width * s, h = im.height * s, x = (cw - w) / 2, y = (ch - h) / 2;
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, cw, ch);
-      ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+      ctx.drawImage(im, x, y, w, h);
+      if (!tall) {
+        const f = w * 0.22;
+        for (const [x0, x1] of [[x, x + f], [x + w, x + w - f]]) {
+          const g = ctx.createLinearGradient(x0, 0, x1, 0);
+          g.addColorStop(0, '#000'); g.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(Math.min(x0, x1), 0, f, ch);
+        }
+      }
     }
     const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(draw); } };
     addEventListener('scroll', queue, { passive: true });

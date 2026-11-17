@@ -134,11 +134,14 @@ a { color: inherit; text-decoration: none; }
   .menu .orn { width: 26px; animation: spin 14s linear infinite; }
   .menu .orn:first-child, .menu .orn:last-child { display: none; }
   .menu a { font-size: 18px; letter-spacing: .08em; padding-block: 6px; }
+  .dash { display: none; }                 /* no road-marking dashes on phones */
 }
 
 /* ---------- Home: portrait + profile ---------- */
 .shatter { position: relative; margin-top: clamp(24px, 6vw, 90px); }
 .shatter-stick { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.shatter .shatter-still { object-fit: contain; }
+@media (max-width: 640px) { .shatter-stick { aspect-ratio: 9 / 16; } .shatter .shatter-still { object-fit: cover; } }
 .shatter canvas, .shatter-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .shatter canvas { opacity: 0; }
 .shatter-stick::before, .shatter-stick::after { content: ""; position: absolute; left: 0; right: 0; height: 22%; z-index: 1; pointer-events: none; }
