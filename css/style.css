@@ -93,6 +93,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateX(-80%); will-change: transform;
   animation: sheen 9s ease-in-out 1.5s infinite;
 }
+@keyframes breathe { 0%, 100% { transform: none; } 50% { transform: scale(1.025, 1.012) translateY(-.4%); } }
 @keyframes sheen { 0% { transform: translateX(-80%); } 45%, 100% { transform: translateX(13.33%); } }
 .hero .logo {
   position: relative; z-index: 2; width: min(34vw, 380px); margin: clamp(-24px, -1vw, 0px) auto 0;
@@ -135,6 +136,8 @@ a { color: inherit; text-decoration: none; }
   .menu .orn:first-child, .menu .orn:last-child { display: none; }
   .menu a { font-size: 18px; letter-spacing: .08em; padding-block: 6px; }
   .dash { display: none; }                 /* no road-marking dashes on phones */
+  /* wings slowly "breathe" (spread ~2%); the sheen layer moves with them so the light stays on the feathers */
+  .hero .wings, .hero .shine { transform-origin: 50% 45%; animation: breathe 6s ease-in-out infinite; will-change: transform; }
 }
 
 /* ---------- Home: portrait + profile ---------- */
