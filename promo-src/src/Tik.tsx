@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, Audio, Img, Loop, OffthreadVideo, Sequence, staticFile, useCurrentFrame, interpolate, Easing } from 'remotion';
+import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, staticFile, useCurrentFrame, interpolate, Easing } from 'remotion';
 
 const FONTS = `@font-face { font-family: Corm; src: url(${staticFile('fonts/cormorant-italic.ttf')}); font-style: italic; }
 @font-face { font-family: Noto; src: url(${staticFile('fonts/noto.ttf')}); }`;
@@ -11,7 +11,8 @@ const S: [string, number, number, string][] = [
   ['4-ai', 0, 54, 'неон, кейсы, видео'],
   ['1-intro', 6, 173, 'лого собирается из осколков'],
 ];
-const END = 75;
+// End card: the logo clip (20 fps, 113 frames = one full turn) starts 1.5 s in and ends facing front
+const END = 125;
 const starts: number[] = []; let acc = 0; S.forEach(([, , l]) => { starts.push(acc); acc += l; });
 export const TIK_TOTAL = acc + END;
 const ease = Easing.bezier(.2, .7, .2, 1);
@@ -61,10 +62,13 @@ const End: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: '#000', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
       <div style={{ width: 1000, height: 562, opacity: a(0), transform: `scale(${.92 + .08 * a(0)})` }}>
-        <Loop durationInFrames={113}><OffthreadVideo src={staticFile('rr-chrome.mp4')} muted style={{ width: '100%', height: '100%', mixBlendMode: 'screen' }} /></Loop>
+        <OffthreadVideo src={staticFile('rr-chrome.mp4')} startFrom={45} muted style={{ width: '100%', height: '100%', mixBlendMode: 'screen' }} />
       </div>
       <div style={{ marginTop: 10, fontFamily: 'Noto', fontWeight: 600, fontSize: 70, color: '#fff', opacity: a(8) }}>Хочешь такой же?</div>
-      <div style={{ marginTop: 26, fontFamily: 'Corm', fontStyle: 'italic', fontSize: 58, color: '#c9a45c', opacity: a(18) }}>пиши в директ · ссылка в профиле</div>
+      <div style={{ marginTop: 34, fontFamily: 'Noto', fontWeight: 600, fontSize: 54, color: '#fff', opacity: a(18), transform: `translateY(${(1 - a(18)) * 16}px)` }}>
+        Напиши <span style={{ background: '#c9a45c', color: '#000', padding: '4px 18px', borderRadius: 10, margin: '0 6px' }}>САЙТ</span> в комментах
+      </div>
+      <div style={{ marginTop: 22, fontFamily: 'Noto', fontSize: 40, color: '#ffffffb3', opacity: a(28) }}>скину ссылку на портфолио</div>
     </AbsoluteFill>
   );
 };
