@@ -411,6 +411,13 @@
     }, 2600);
   }
 
+  // Case films: big play button, then native controls with sound
+  document.querySelectorAll('[data-film]').forEach((f) => {
+    const v = f.querySelector('video'), b = f.querySelector('.film-play');
+    b.addEventListener('click', () => { f.classList.add('playing'); v.controls = true; v.muted = false; v.play().catch(() => {}); });
+    v.addEventListener('ended', () => { f.classList.remove('playing'); v.controls = false; v.currentTime = 0; });
+  });
+
   // Lightbox: any [data-full] inside a [data-gallery] group
   const groups = {};
   document.querySelectorAll('[data-gallery] [data-full]').forEach((el) => {

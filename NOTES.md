@@ -25,7 +25,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Red neon theme; footer buttons solid black inside with red neon frame; red cursor.
 - Typing swap "it's not ai → it's us."
 - Sain't: phones with haze that spreads in after the photo and breathes; short lead + Read more; Selected works carousel (15).
-- Avito: dark intro (white wordmark, pulsing dots), facts strip, film placeholder (TODO: real video link), Frames carousel (edge strips cropped), Process carousel (6 steps).
+- Avito: dark intro (white wordmark, pulsing dots), facts strip, Film 01 (img/avito-film-1.mp4, 720p, tap to play with sound; second film pending), Frames carousel (edge strips cropped), Process carousel (6 steps).
 
 ## Photography (photography.html)
 - Darkroom: pulsing red safelight bulb, animated RR (draw + develop), focus pull with viewfinder corners (no AF square), dust in the beam (no re-scatter on mobile scroll), live exposure readout (one line, red tick).
