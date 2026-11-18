@@ -580,3 +580,19 @@ a { color: inherit; text-decoration: none; }
   .offer-list li:nth-child(even) { padding-left: 0; }
   .cta { width: 100%; justify-content: center; }
 }
+
+/* thorns rise behind the two CTA buttons; a silver glint travels along them like on the wings */
+.offer { position: relative; z-index: 2; }
+.contacts { margin-top: -190px; padding-top: 190px; }
+@media (max-width: 640px) { .contacts { margin-top: -330px; padding-top: 330px; } }
+.contacts .thorns-shine {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden; opacity: .55; mix-blend-mode: screen;
+  -webkit-mask: url(../img/thorns-mask.webp) center / cover no-repeat; mask: url(../img/thorns-mask.webp) center / cover no-repeat;
+}
+.contacts .thorns-shine::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 300%;
+  background: linear-gradient(120deg, transparent 42%, #e8ecf233 46%, #f4f7ff 49.5%, #ffffff 50%, #f4f7ff 50.5%, #e8ecf233 54%, transparent 58%);
+  transform: translateX(-80%); will-change: transform; animation: thornsheen 8s ease-in-out 2s infinite;
+}
+@keyframes thornsheen { 0% { transform: translateX(-80%); } 50%, 100% { transform: translateX(13.33%); } }
+@media (prefers-reduced-motion: reduce) { .contacts .thorns-shine { display: none; } }
