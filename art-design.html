@@ -21,10 +21,11 @@
 <script>(function(c){c.add('js');try{var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&!sessionStorage.getItem('rrSeen'))c.add('pre');if(!('onpagereveal' in window)&&sessionStorage.getItem('rrNav')){c.add('enter');sessionStorage.removeItem('rrNav')}}catch(e){}})(document.documentElement.classList)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Cormorant+Garamond:ital,wght@1,300&family=Silkscreen&display=swap">
-<link rel="stylesheet" href="css/style.css?v=2611181910">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Silkscreen&display=swap">
+<link rel="stylesheet" href="css/style.css?v=2611181937">
+<link rel="stylesheet" href="css/art.css?v=2611181937">
 </head>
-<body>
+<body class="art">
 <div class="preloader" aria-hidden="true">
   <canvas></canvas>
   <img src="img/rr-chrome-mark-cut.webp" alt="">
@@ -41,15 +42,54 @@
     </nav>
   </div>
 </header>
-<main class="soon">
-  <div class="bg" aria-hidden="true"></div>
-  <div class="inner wrap">
-    <img src="img/ornament.webp" alt="" width="56" height="56">
-    <h1>Art &amp; Design</h1>
-    <p>In the forge. Coming soon.</p>
-    <a class="home-link" href="index.html"><i class="arrow l">←</i> Home</a>
-  </div>
+<main>
+  <section class="a-hero" data-torch aria-label="Where light learns its shape">
+    <img class="a-hero-img" src="img/art/embers-rose.webp" alt="A dark red rosebud lying on red satin">
+    <div class="torch" aria-hidden="true"></div>
+    <div class="a-hero-text">
+      <h1>Where light<br>learns its shape</h1>
+      <p class="hint"><span class="hint-mouse">Move to light the room</span><span class="hint-touch">Touch to light the room</span></p>
+    </div>
+  </section>
+
+  <section class="triptych-wrap" aria-labelledby="embers-title">
+    <div class="triptych" data-tilt data-gallery="embers">
+      <button type="button" class="panel" data-full="img/art/embers-confetti.webp"><img src="img/art/embers-confetti-sm.webp" alt="Red confetti falling over an Amsterdam canal at night" loading="lazy"></button>
+      <button type="button" class="panel mid" data-full="img/art/embers-rose.webp"><img src="img/art/embers-rose-sm.webp" alt="A rosebud on red satin" loading="lazy"></button>
+      <button type="button" class="panel" data-full="img/art/embers-canopy.webp"><img src="img/art/embers-canopy-sm.webp" alt="Looking up into a red tree canopy" loading="lazy"></button>
+    </div>
+    <div class="caption">
+      <h2 id="embers-title">Embers</h2>
+      <p>Triptych, 2025. Shot on iPhone, colour and texture reworked with AI.</p>
+    </div>
+  </section>
+
+  <section class="first" aria-labelledby="first-title">
+    <figure class="first-img" data-gallery="first">
+      <button type="button" data-full="img/art/first-light.webp"><img src="img/art/first-light-sm.webp" alt="A face of blue stone and gold lines, generated with DALL·E 2" loading="lazy"></button>
+      <span class="glint" aria-hidden="true"></span>
+    </figure>
+    <div class="first-text">
+      <h2 id="first-title">First light</h2>
+      <p>The first image I made with AI, on DALL·E 2. Rough, strange, and the reason everything else on this site exists.</p>
+    </div>
+  </section>
+
+  <section class="manifesto" aria-label="Manifesto">
+    <p>I was taught to hide the dark parts.<br>Now I point the camera at them.</p>
+    <p>Shadow is not the absence of light.<br>It is where light learns its shape.</p>
+    <p>Accepting it is the first act of love,<br>and love is how anything gets made.</p>
+    <p class="last">The world is stranger and kinder than it looks.<br>We are not here to watch it. We are here to make it.</p>
+    <p class="sign">Richard Road</p>
+  </section>
 </main>
-<script src="js/main.js?v=2611181910"></script>
+
+<footer class="page-end">
+  <div class="wrap">
+    <a href="photography.html"><small>Back</small><span><i class="arrow l">←</i> Photography</span></a>
+    <a href="index.html"><small>Next</small><span>Home <i class="arrow r">→</i></span></a>
+  </div>
+</footer>
+<script src="js/main.js?v=2611181937"></script>
 </body>
 </html>

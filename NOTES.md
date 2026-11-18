@@ -36,8 +36,14 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
   2. @sachiko_________ — "2025 · shot on iPhone" (3 frames)
   3. @suzys.arts — 2024 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour)
 
+## Art & Design (art-design.html, css/art.css)
+- Concept "Where light learns its shape" (shadow / self-acceptance). Hero: rose image in a dark room lit by a torch (pointer, finger, idle drift).
+- "Embers" triptych 2025 (confetti canal · rose centre · red canopy), iPhone + AI, tilts as one altarpiece on desktop, stacked on phones.
+- "First light": first AI image (DALL·E 2), gold veins glint (img/art/first-light-mask.webp).
+- Manifesto (English), stanzas warm up at mid-screen. Accent verdigris #5fae93 only on the signature.
+- Sain't result line added: Instagram from zero, near-daily merch sales, paid back + profit in a few months, paused by the war.
+
 ## Pending / ideas
-- Art & Design page: wants a genuine, non-derivative wow page. Directions offered: "Shadow" (reveal by cursor/finger), "Gallery space", "Manifesto". Needs his works + one-line theme.
 - Case results for Sain't/Avito (numbers, quotes), Avito video link.
 - Shimmer-free consistency across pages (shared type/gesture), reduce reliance on generic gothic/chrome/neon tropes.
 - Custom domain (later). Mom's Telegram decoupage shop as a case.

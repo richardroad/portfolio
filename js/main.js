@@ -418,6 +418,51 @@
     v.addEventListener('ended', () => { f.classList.remove('playing'); v.controls = false; v.currentTime = 0; });
   });
 
+  // Art & Design: torch that lights the dark room (pointer, finger, or a slow drift when idle)
+  const torchHost = document.querySelector('[data-torch]');
+  if (torchHost) {
+    const t = torchHost.querySelector('.torch');
+    let tx = .5, ty = .55, x = .5, y = .55, idle = 0, last = performance.now(), visible = true;
+    const set = (cx, cy) => { const r = torchHost.getBoundingClientRect(); tx = (cx - r.left) / r.width; ty = (cy - r.top) / r.height; idle = 0; };
+    torchHost.addEventListener('pointermove', (e) => set(e.clientX, e.clientY), { passive: true });
+    torchHost.addEventListener('touchmove', (e) => set(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    torchHost.addEventListener('touchstart', (e) => set(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { const was = visible; visible = e.isIntersecting; if (visible && !was) requestAnimationFrame(tick); }).observe(torchHost);
+    function tick(now) {
+      if (!visible) return;
+      const dt = now - last; last = now; idle += dt;
+      if (idle > 2500 && !reduced) {            // nobody is holding the light: let it wander slowly
+        const k = now / 1000;
+        tx = .5 + Math.sin(k * .31) * .26; ty = .5 + Math.sin(k * .23 + 1) * .2;
+      }
+      x += (tx - x) * .08; y += (ty - y) * .08;
+      t.style.setProperty('--x', (x * 100).toFixed(2) + '%');
+      t.style.setProperty('--y', (y * 100).toFixed(2) + '%');
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Art & Design: the triptych tilts as one altarpiece toward the pointer (desktop only)
+  const tilt = document.querySelector('[data-tilt]');
+  if (tilt && !reduced && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const host = tilt.parentElement;
+    host.addEventListener('pointermove', (e) => {
+      const r = tilt.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+      tilt.style.setProperty('--ry', (px * 7).toFixed(2) + 'deg');
+      tilt.style.setProperty('--rx', (-py * 5).toFixed(2) + 'deg');
+    });
+    host.addEventListener('pointerleave', () => { tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--rx', '0deg'); });
+  }
+
+  // Art & Design: manifesto stanzas warm up as they reach the middle of the screen
+  const stanzas = document.querySelectorAll('.manifesto p');
+  if (stanzas.length && 'IntersectionObserver' in window) {
+    const so = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('lit'); so.unobserve(e.target); } }), { rootMargin: '-40% 0px -40% 0px' });
+    stanzas.forEach((p) => so.observe(p));
+  } else stanzas.forEach((p) => p.classList.add('lit'));
+
   // Lightbox: any [data-full] inside a [data-gallery] group
   const groups = {};
   document.querySelectorAll('[data-gallery] [data-full]').forEach((el) => {
