@@ -1,0 +1,127 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Corm; src: url(cormorant-italic.ttf); font-style: italic; }
+@font-face { font-family: Noto; src: url(noto.ttf); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #222; }
+.s { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: #f2ece2; font-family: Noto; margin-bottom: 20px; }
+.bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.shade { position: absolute; inset: 0; }
+/* shared chrome */
+.mark { position: absolute; top: 120px; left: 72px; width: 120px; opacity: .9; }
+.idx { position: absolute; top: 150px; right: 72px; font-size: 26px; letter-spacing: .3em; color: #c9a45c; }
+.edge { position: absolute; right: 34px; top: 50%; transform: translate(50%, -50%) rotate(90deg); font-size: 20px; letter-spacing: .5em; color: #ffffff55; white-space: nowrap; }
+.foot { position: absolute; left: 72px; right: 72px; bottom: 250px; }
+.kicker { font-size: 28px; letter-spacing: .32em; text-transform: uppercase; color: #c9a45c; display: flex; align-items: center; gap: 22px; }
+.kicker:before { content: ''; width: 64px; height: 2px; background: #c9a45c; }
+.h { font-family: Corm; font-style: italic; font-weight: 400; font-size: 132px; line-height: .96; margin-top: 30px; letter-spacing: -.01em; }
+.p { margin-top: 36px; font-size: 42px; font-weight: 600; line-height: 1.3; color: #fff; }
+.p.dim { font-weight: 400; color: #ffffffb8; font-size: 38px; }
+.plate { display: inline-block; background: #000000a6; padding: 14px 30px; border-radius: 16px; border-bottom: 3px solid #c9a45c; }
+.gold { background: #c9a45c; color: #000; padding: 2px 16px; border-radius: 10px; }
+.sticker { border: 2px dashed #ffffff55; border-radius: 28px; color: #ffffff80; font-size: 26px; letter-spacing: .1em; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+.numeral { position: absolute; font-family: Corm; font-style: italic; color: transparent; -webkit-text-stroke: 2px #ffffff40; line-height: .8; }
+.corner { position: absolute; width: 70px; height: 70px; border: 0 solid #ff3b2fcc; }
+.mono { font-size: 26px; letter-spacing: .22em; color: #ffffffb0; }
+</style></head><body>
+
+<!-- 01 · teaser: the old portfolio is broken -->
+<div class="s" id="s1">
+  <div class="bg" style="background-image:url(bg-shatter.jpg); transform: scale(1.35); background-position: 50% 40%"></div>
+  <div class="shade" style="background: linear-gradient(#0008 0%, transparent 22%, transparent 38%, #000d 58%, #000 76%)"></div>
+  <img class="mark" src="rr-chrome-mark-cut.webp"><div class="idx">01 / 07</div>
+  <div class="foot">
+    <div class="kicker">новое</div>
+    <div class="h">Я разбил своё старое портфолио.</div>
+    <div class="p dim">Завтра покажу, что собрал из&nbsp;осколков.</div>
+  </div>
+</div>
+
+<!-- 02 · quiz -->
+<div class="s" id="s2">
+  <div class="bg" style="background-image:url(bg-shards.jpg); transform: scale(1.25)"></div>
+  <div class="shade" style="background: radial-gradient(ellipse at 50% 42%, transparent 20%, #000c 70%)"></div>
+  <img class="mark" src="rr-chrome-mark-cut.webp"><div class="idx">02 / 07</div>
+  <div style="position:absolute; top: 330px; left: 72px; right: 72px">
+    <div class="kicker">угадай</div>
+    <div class="h" style="font-size: 116px">Сколько времени ушло на&nbsp;сайт с&nbsp;AI?</div>
+  </div>
+  <div class="sticker" style="position:absolute; left: 150px; right: 150px; top: 1080px; height: 420px">стикер «Викторина»<br><br>3 вечера · 2 недели · 2 месяца</div>
+  <div class="p dim" style="position:absolute; left:72px; right:72px; bottom: 260px; text-align:center; font-size: 34px">ответ — завтра, вместе с сайтом</div>
+</div>
+
+<!-- 03 · chapter I: AI production -->
+<div class="s" id="s3">
+  <div class="bg" style="background-image:url(saint-face.webp); background-position: 50% 30%"></div>
+  <div class="shade" style="background: linear-gradient(#000a 0%, transparent 22%, transparent 50%, #000e 78%, #000 100%)"></div>
+  <div class="shade" style="box-shadow: inset 0 0 0 18px #000, inset 0 0 0 22px #ff2a3a, inset 0 0 60px 30px #ff2a3a66"></div>
+  <div class="numeral" style="font-size: 900px; right: 40px; top: 120px; -webkit-text-stroke-color:#ff2a3a77">I</div>
+  <img class="mark" src="rr-chrome-mark-cut.webp"><div class="idx">03 / 07</div>
+  <div class="foot">
+    <div class="kicker" style="color:#ff5a64">глава I · AI production</div>
+    <div class="h">Бренд с нуля. Целиком на&nbsp;AI.</div>
+    <div class="p dim">Sain't: от логотипа до мерча, который продавался почти каждый день.</div>
+  </div>
+</div>
+
+<!-- 04 · chapter II: photography -->
+<div class="s" id="s4">
+  <div class="bg" style="background-image:url(puk-face.webp); background-position: 50% 20%; filter: brightness(.82) contrast(1.05)"></div>
+  <div class="shade" style="background: linear-gradient(#000b 0%, transparent 20%, transparent 52%, #000e 78%, #000 100%)"></div>
+  <div class="shade" style="background: radial-gradient(circle at 50% 0%, #ff20100f, transparent 60%)"></div>
+  <div class="corner" style="top: 300px; left: 120px; border-top-width: 4px; border-left-width: 4px"></div>
+  <div class="corner" style="top: 300px; right: 120px; border-top-width: 4px; border-right-width: 4px"></div>
+  <div class="corner" style="top: 1060px; left: 120px; border-bottom-width: 4px; border-left-width: 4px"></div>
+  <div class="corner" style="top: 1060px; right: 120px; border-bottom-width: 4px; border-right-width: 4px"></div>
+  <div class="mono" style="position:absolute; top: 1160px; left: 0; right: 0; text-align:center"><span style="color:#ff3b2f">●</span>&nbsp; f/1.8 · 1/125 · ISO 400</div>
+  <div class="numeral" style="font-size: 700px; left: 40px; top: 1080px; opacity: .6">II</div>
+  <img class="mark" src="rr-chrome-mark-cut.webp"><div class="idx">04 / 07</div>
+  <div class="foot">
+    <div class="kicker">глава II · photography</div>
+    <div class="h">Тёмная комната для&nbsp;мягкого света.</div>
+    <div class="p dim">Кадры проявляются прямо на экране, как в лаборатории.</div>
+  </div>
+</div>
+
+<!-- 05 · chapter III: art & design -->
+<div class="s" id="s5">
+  <div class="bg" style="background-image:url(embers-rose.webp); background-position: 50% 45%; transform: scale(1.3) translateY(-60px)"></div>
+  <div class="shade" style="background: radial-gradient(circle at 54% 40%, transparent 12%, #000c 40%, #000 66%)"></div>
+  <div class="numeral" style="font-size: 560px; left: 50px; top: 230px; -webkit-text-stroke-color:#c9a45c38">III</div>
+  <img class="mark" src="rr-chrome-mark-cut.webp"><div class="idx">05 / 07</div>
+  <div class="foot">
+    <div class="kicker">глава III · art &amp; design</div>
+    <div class="h">Где свет учится форме.</div>
+    <div class="p dim">Комната тёмная. Свет идёт за&nbsp;твоим пальцем.</div>
+  </div>
+</div>
+
+<!-- 06 · launch -->
+<div class="s" id="s6">
+  <div class="bg" style="background-image:url(bg-home.jpg); transform: scale(1.5); transform-origin: 50% 0%; background-position: 50% 0%"></div>
+  <div class="shade" style="background: linear-gradient(transparent 30%, #000 47%, #000 100%)"></div>
+  <div class="idx">06 / 07</div>
+  <div class="foot">
+    <div class="kicker">онлайн</div>
+    <div class="h">Новое портфолио открыто.</div>
+    <div class="p dim">Лучше смотреть с телефона и со звуком. Трогай всё.</div>
+    <div class="sticker" style="margin-top: 50px; height: 150px">стикер «Ссылка» → richardroad.github.io/portfolio</div>
+  </div>
+</div>
+
+<!-- 07 · offer -->
+<div class="s" id="s7">
+  <div class="bg" style="background-image:url(thorns.webp); background-size: 190% auto; background-position: 45% 100%; background-repeat: no-repeat; opacity: .5; top: 1100px"></div>
+  <div class="shade" style="background: linear-gradient(#000 0%, #000 55%, transparent 75%, #000 98%)"></div>
+  <img src="rr-chrome-mark-cut.webp" style="position:absolute; top: 300px; left: 50%; width: 300px; transform: translateX(-50%)">
+  <div class="idx">07 / 07</div>
+  <div style="position:absolute; top: 700px; left: 72px; right: 72px; text-align:center">
+    <div class="h" style="font-size: 120px">Хочешь такой&nbsp;же?</div>
+    <div class="p" style="margin-top: 60px; font-size: 40px; font-weight: 400; color:#ffffffc8; line-height: 1.7">Сайт-портфолио · CV<br>Личный бренд · AI-визуалы</div>
+    <div class="p" style="margin-top: 70px; font-size: 52px"><span class="plate">Напиши <span class="gold">САЙТ</span> в директ</span></div>
+    <div class="p dim" style="margin-top: 40px; font-size: 34px; color:#c9a45c">первым трём — по спеццене</div>
+  </div>
+</div>
+
+</body></html>
