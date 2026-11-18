@@ -458,17 +458,16 @@
     host.addEventListener('pointerleave', () => { tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--rx', '0deg'); });
   }
 
-  // Art & Design (phones): the triptych strip opens on the rose; dots follow the swipe
-  const strip = document.querySelector('.triptych');
-  if (strip && matchMedia('(max-width: 700px)').matches) {
-    const mid = strip.querySelector('.mid'), dots = document.querySelectorAll('.dots i');
+  // Art & Design (phones): each triptych strip opens on its middle work; dots follow the swipe
+  if (matchMedia('(max-width: 700px)').matches) document.querySelectorAll('.triptych').forEach((strip) => {
+    const mid = strip.querySelector('.mid'), dots = strip.parentElement.querySelectorAll('.dots i');
     requestAnimationFrame(() => { strip.scrollLeft = mid.offsetLeft - (strip.clientWidth - mid.clientWidth) / 2; });
     strip.addEventListener('scroll', () => {
       const c = strip.scrollLeft + strip.clientWidth / 2; let best = 0, bd = 1e9;
       [...strip.children].forEach((el, i) => { const d = Math.abs(el.offsetLeft + el.clientWidth / 2 - c); if (d < bd) { bd = d; best = i; } });
       dots.forEach((d, i) => d.classList.toggle('on', i === best));
     }, { passive: true });
-  }
+  });
 
   // Art & Design: manifesto stanzas warm up as they reach the middle of the screen
   const stanzas = document.querySelectorAll('.manifesto p');

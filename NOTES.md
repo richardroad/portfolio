@@ -40,6 +40,8 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Custom gold cursor is OFF site-wide (felt laggy). Torch is a transform-moved layer (no per-frame repaint) that sleeps when settled.
 - Page mark: an R and its mirrored ember-red shadow R (hero SVG + topbar).
 - Phones: triptych is a swipe strip that opens on the rose, with dots.
+- "Après moi" triptych (2024, DALL·E 2) — title references Regina Spektor; personal. Hall mock tried and rejected.
+- Top bar: logo only, no name text, on all pages.
 - Concept "Where light learns its shape" (shadow / self-acceptance). Hero: rose image in a dark room lit by a torch (pointer, finger, idle drift).
 - "Embers" triptych 2025 (confetti canal · rose centre · red canopy), iPhone + AI, tilts as one altarpiece on desktop, stacked on phones.
 - "First light": first AI image (DALL·E 2), gold veins glint (img/art/first-light-mask.webp).
