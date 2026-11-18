@@ -530,16 +530,16 @@ a { color: inherit; text-decoration: none; }
 
 /* AI production: footer buttons in red neon instead of stone + gold */
 .ai .page-end a {
-  background: linear-gradient(180deg, #120507ee, #050203ee) padding-box,
+  background: linear-gradient(#000, #000) padding-box,
               linear-gradient(135deg, #ff4a4a, #9b1b20 35%, #6a1215 65%, #ff4a4a) border-box;
-  box-shadow: inset 0 0 18px #ff2a2a1f, 0 0 16px #ff2a2a33, 0 10px 30px #000a;
+  box-shadow: 0 0 16px #ff2a2a33, 0 10px 30px #000a;
 }
 .ai .page-end a::before, .ai .page-end a::after { border-color: var(--neon-red); filter: drop-shadow(0 0 4px #ff3b3b); }
 .ai .page-end a small, .ai .page-end a .arrow { color: var(--neon-red); text-shadow: 0 0 8px #ff3b3b99; }
 .ai .page-end a:hover {
-  background: linear-gradient(180deg, #1a0608ee, #070203ee) padding-box,
+  background: linear-gradient(#000, #000) padding-box,
               linear-gradient(135deg, #ff6b6b, #ff2a2a 35%, #8a1418 65%, #ff3b3b) border-box;
-  box-shadow: inset 0 0 22px #ff2a2a26, 0 0 26px #ff2a2a55, 0 12px 34px #000a;
+  box-shadow: 0 0 26px #ff2a2a55, 0 12px 34px #000a;
 }
 .ai .page-end a:hover span { text-shadow: 0 0 14px #ff3b3b88; }
 .ai .cursor .dot { background: radial-gradient(#ffd6d6 35%, #ff3b3b00 72%); }
