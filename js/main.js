@@ -331,6 +331,26 @@
     });
   }
 
+  // Carousels (process steps): arrow buttons + progress bar that tracks the scroll position
+  document.querySelectorAll('.process').forEach((box) => {
+    const track = box.querySelector('.carousel'), bar = box.querySelector('.bar i');
+    const prev = box.querySelector('.prev'), nxt = box.querySelector('.nxt');
+    if (!track) return;
+    const step = () => { const li = track.querySelector('li'); return li ? li.getBoundingClientRect().width + 14 : track.clientWidth; };
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const vis = track.clientWidth / track.scrollWidth;
+      bar.style.width = (vis * 100) + '%';
+      bar.style.left = (max > 0 ? (track.scrollLeft / max) * (100 - vis * 100) : 0) + '%';
+      prev.disabled = track.scrollLeft < 4; nxt.disabled = track.scrollLeft > max - 4;
+    };
+    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    nxt.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+    track.addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  });
+
   // Lightbox: any [data-full] inside a [data-gallery] group
   const groups = {};
   document.querySelectorAll('[data-gallery] [data-full]').forEach((el) => {
