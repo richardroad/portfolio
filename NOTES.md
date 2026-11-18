@@ -34,7 +34,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Series order (user's choice, not strictly chronological), photos surface out of the dark (not red):
   1. @pukhalska_ — 2025, 9 frames, summer by the water
   2. @sachiko_________ — "2025 · shot on iPhone" (3 frames)
-  3. @suzys.arts — 2024 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour)
+  3. @suzys.arts — 2024 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour). HIDDEN for now (commented out in photography.html at the user's request; uncomment to restore).
 
 ## Art & Design (art-design.html, css/art.css)
 - Custom gold cursor is OFF site-wide (felt laggy). Torch is a transform-moved layer (no per-frame repaint) that sleeps when settled.
