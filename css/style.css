@@ -208,6 +208,8 @@ a { color: inherit; text-decoration: none; }
   position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 16px;
   margin-top: clamp(64px, calc(10vw + 4px), 144px); font-family: var(--pixel); font-size: clamp(22px, 3vw, 34px); letter-spacing: .12em;
 }
+.contacts > .wrap { padding-bottom: 50px; }   /* keeps the old section height so the thorns background sits as before */
+@media (max-width: 640px) { .contacts > .wrap { padding-bottom: 66px; } }
 .next img { width: clamp(70px, 9vw, 110px); transition: transform .35s ease; }
 .next:hover img { transform: translateX(12px); }
 
