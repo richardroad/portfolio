@@ -143,7 +143,7 @@ a { color: inherit; text-decoration: none; }
   .menu a, .menu .orn { position: relative; z-index: 1; }
   .astro { display: block; position: absolute; inset: 0; pointer-events: none; }
   .astro { --as: min(262px, 66vw); }
-  .astro img { position: absolute; top: 50%; width: var(--as); height: var(--as); max-width: none; margin-top: calc(var(--as) / -2); opacity: .55; }
+  .astro img { position: absolute; top: 50%; width: var(--as); height: var(--as); max-width: none; margin-top: calc(var(--as) / -2); opacity: .65; }
   .astro img:first-child { left: calc(var(--as) * -.64); }
   .astro img:last-child { right: calc(var(--as) * -.64); transform: scaleX(-1); }
   /* wings slowly "breathe" (spread ~2%); the sheen layer moves with them so the light stays on the feathers */
@@ -206,14 +206,10 @@ a { color: inherit; text-decoration: none; }
 
 .next {
   position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 16px;
-  margin-top: clamp(60px, 10vw, 140px); font-family: var(--pixel); font-size: clamp(22px, 3vw, 34px); letter-spacing: .12em;
+  margin-top: clamp(64px, calc(10vw + 4px), 144px); font-family: var(--pixel); font-size: clamp(22px, 3vw, 34px); letter-spacing: .12em;
 }
 .next img { width: clamp(70px, 9vw, 110px); transition: transform .35s ease; }
 .next:hover img { transform: translateX(12px); }
-.credit {
-  position: relative; text-align: center; font-family: var(--pixel); font-size: 10px;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-dim); margin-top: 28px;
-}
 
 /* ---------- Toast ---------- */
 .toast {
