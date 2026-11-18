@@ -62,10 +62,11 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 @keyframes vf { 0% { opacity: 0; transform: translate(var(--x), var(--y)); } 60% { opacity: 1; } 100% { opacity: .55; transform: none; } }
 .expo { margin: 14px 0 0; display: flex; justify-content: center; gap: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; color: #8a847a; font-variant-numeric: tabular-nums; animation: focus 1.6s ease .4s both; }
 .expo i { font-style: normal; opacity: .5; }
-.expo span { display: inline-block; text-align: center; transition: opacity .35s ease; }
-.expo [data-k="f"], .expo [data-k="s"] { width: 5ch; }
-.expo [data-k="iso"] { width: 7ch; }
-.expo span.tick { opacity: 0; }
+.expo { white-space: nowrap; }
+.expo span { display: inline-block; text-align: center; white-space: nowrap; transition: opacity .45s ease, color .45s ease, text-shadow .45s ease; }
+.expo [data-k="f"], .expo [data-k="s"] { min-width: 6.4ch; }
+.expo [data-k="iso"] { min-width: 8.8ch; }
+.expo span.tick { opacity: .35; color: #ff3b30; text-shadow: 0 0 8px #ff3b3088; }
 
 /* series */
 .series { margin: clamp(56px, 9vw, 120px) auto 0; max-width: 880px; }

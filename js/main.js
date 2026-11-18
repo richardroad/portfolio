@@ -400,7 +400,7 @@
       const k = keys[Math.random() * keys.length | 0], el = expo.querySelector(`[data-k="${k}"]`);
       let v; do { v = V[k][Math.random() * V[k].length | 0]; } while (v === el.textContent);
       el.classList.add('tick');
-      setTimeout(() => { el.textContent = v; requestAnimationFrame(() => el.classList.remove('tick')); }, 380);
+      setTimeout(() => { el.textContent = v; setTimeout(() => el.classList.remove('tick'), 60); }, 450);
     }, 2600);
   }
 
