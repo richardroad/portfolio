@@ -60,13 +60,12 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 .vf i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; --x: -34px; --y: 26px; }
 .vf i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; --x: 34px; --y: 26px; }
 @keyframes vf { 0% { opacity: 0; transform: translate(var(--x), var(--y)); } 60% { opacity: 1; } 100% { opacity: .55; transform: none; } }
-/* focus confirmation: a tiny square blinks red then settles */
-.vf b { position: absolute; left: 50%; top: 52%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border: 1px solid #ff3b30; opacity: 0; animation: af 2s ease 1.2s forwards; }
-@keyframes af { 0%, 20%, 40% { opacity: 0; } 10%, 30% { opacity: .9; } 60% { opacity: .9; } 100% { opacity: 0; } }
 .expo { margin: 14px 0 0; display: flex; justify-content: center; gap: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; color: #8a847a; font-variant-numeric: tabular-nums; animation: focus 1.6s ease .4s both; }
 .expo i { font-style: normal; opacity: .5; }
-.expo span { display: inline-block; min-width: 4.5ch; transition: opacity .25s, color .25s; }
-.expo span.tick { opacity: .25; color: #ff3b30; }
+.expo span { display: inline-block; text-align: center; transition: opacity .35s ease; }
+.expo [data-k="f"], .expo [data-k="s"] { width: 5ch; }
+.expo [data-k="iso"] { width: 7ch; }
+.expo span.tick { opacity: 0; }
 
 /* series */
 .series { margin: clamp(56px, 9vw, 120px) auto 0; max-width: 880px; }
@@ -126,5 +125,5 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
   .js .shot.reveal img, .js .shot.reveal video { opacity: 1; filter: none; transform: none; transition: none; }
   .js .shot.empty.reveal .pic { opacity: 1; }
   .p-hero .frame, .p-hero h1, .p-hero .sub, .expo { animation: none; }
-  .vf i { opacity: .55; animation: none; } .vf b { display: none; }
+  .vf i { opacity: .55; animation: none; }
 }
