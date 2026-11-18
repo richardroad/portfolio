@@ -31,10 +31,10 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 ## Photography (photography.html)
 - Darkroom: pulsing red safelight bulb, animated RR (draw + develop), focus pull with viewfinder corners (no AF square), dust in the beam (no re-scatter on mobile scroll), live exposure readout (one line, red tick).
 - Tagline "portraits · soft light · quiet moments".
-- Series in chronological order, photos surface out of the dark (not red):
-  1. @suzys.arts — 2025 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour)
-  2. @pukhalska_ — 2026, 9 frames, summer by the water
-  3. @sachiko_________ — "2026 · shot on iPhone" (3 frames)
+- Series order (user's choice, not strictly chronological), photos surface out of the dark (not red):
+  1. @pukhalska_ — 2025, 9 frames, summer by the water
+  2. @sachiko_________ — "2025 · shot on iPhone" (3 frames)
+  3. @suzys.arts — 2024 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour)
 
 ## Pending / ideas
 - Art & Design page: wants a genuine, non-derivative wow page. Directions offered: "Shadow" (reveal by cursor/finger), "Gallery space", "Manifesto". Needs his works + one-line theme.
