@@ -22,6 +22,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Old Contact/Instagram/Email icon links were removed on purpose. Next button: serif caps, gold arrow, not too close to the edge.
 
 ## AI Production (ai-production.html)
+- Case years: Sain't 2025, Avito 2026.
 - Red neon theme; footer buttons solid black inside with red neon frame; red cursor.
 - Typing swap "it's not ai → it's us."
 - Sain't: phones with haze that spreads in after the photo and breathes; short lead + Read more; Selected works carousel (15).
@@ -31,9 +32,9 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Darkroom: pulsing red safelight bulb, animated RR (draw + develop), focus pull with viewfinder corners (no AF square), dust in the beam (no re-scatter on mobile scroll), live exposure readout (one line, red tick).
 - Tagline "portraits · soft light · quiet moments".
 - Series in chronological order, photos surface out of the dark (not red):
-  1. @suzys.arts — 2025 monochrome (2) + sub-series "Violet Hour" (3, candlelight, colour)
-  2. @sachiko_________ — "2026 · shot on iPhone" (3 frames)
-  3. @pukhalska_ — 2026, 9 frames, summer by the water
+  1. @suzys.arts — 2025 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour)
+  2. @pukhalska_ — 2026, 9 frames, summer by the water
+  3. @sachiko_________ — "2026 · shot on iPhone" (3 frames)
 
 ## Pending / ideas
 - Art & Design page: wants a genuine, non-derivative wow page. Directions offered: "Shadow" (reveal by cursor/finger), "Gallery space", "Manifesto". Needs his works + one-line theme.
