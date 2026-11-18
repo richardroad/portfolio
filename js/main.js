@@ -359,16 +359,23 @@
     const cx = dust.getContext('2d');
     let W = 0, H = 0, dpr = 1, px = 0, py = 0, tx = 0, ty = 0, on = true;
     const P = [];
+    let cw = 0, ch = 0;
+    // Phones fire "resize" while scrolling (the address bar shows/hides). Only react when the
+    // canvas really changed size, and then rescale the existing dust instead of re-scattering it.
     const size = () => {
+      const w = dust.clientWidth, h = dust.clientHeight;
+      if (w === cw && h === ch) return;
       dpr = Math.min(devicePixelRatio || 1, 2);
-      W = dust.width = dust.clientWidth * dpr; H = dust.height = dust.clientHeight * dpr;
-      P.length = 0;
+      const sx = cw ? w / cw : 1, sy = ch ? h / ch : 1;
+      cw = w; ch = h;
+      W = dust.width = w * dpr; H = dust.height = h * dpr;
+      if (P.length) { P.forEach((p) => { p.x *= sx; p.y *= sy; }); return; }
       const n = innerWidth < 700 ? 26 : 40;
       for (let i = 0; i < n; i++) P.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7,
         r: (.5 + Math.random() * 1.3) * dpr, vy: (.04 + Math.random() * .12) * dpr, ph: Math.random() * 6.28, tw: .4 + Math.random() });
     };
     size(); addEventListener('resize', size);
-    addEventListener('pointermove', (e) => { tx = (e.clientX / innerWidth - .5) * 2; ty = (e.clientY / innerHeight - .5) * 2; }, { passive: true });
+    addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; tx = (e.clientX / innerWidth - .5) * 2; ty = (e.clientY / innerHeight - .5) * 2; }, { passive: true });
     addEventListener('deviceorientation', (e) => { if (e.gamma != null) { tx = Math.max(-1, Math.min(1, e.gamma / 30)); ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30)); } });
     if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(loop); }).observe(dust);
     function loop(t) {
