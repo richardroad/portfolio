@@ -52,5 +52,10 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Case results for Sain't/Avito (numbers, quotes), Avito video link.
 - Shimmer-free consistency across pages (shared type/gesture), reduce reliance on generic gothic/chrome/neon tropes.
 - Custom domain (later). Mom's Telegram decoupage shop as a case.
-- Promo reel (Remotion) lives outside git in `promo/`; v3 has new copy + sound synced to animation; voice-over pending (ElevenLabs connector timed out; network secret for api.elevenlabs.io was saved with a wrong value — fix in environment settings).
+- Promo: renders in `promo/` (git-ignored); sources + how-to in `promo-src/README.md`.
+  - Current pick: the TikTok/Reel cut `rr-tiktok.mp4` (~17 s) and the 30 s story template `rr-story2-RU/EN.mp4`.
+  - The experimental OPN/Arca-style reel was rejected as too experimental.
+  - Posting plan: Instagram warm-up stories for 3 days, then the Reel. TikTok is a personal account (a business account needs company documents); post the short cut there.
+  - Voice-over pending: ElevenLabs needs a valid `sk_` key in the environment's network secrets.
+  - Strategy docs: TikTok https://claude.ai/artifact/VE8Na7rzJ2WS9buVqKjkS2 · Instagram https://claude.ai/artifact/HjiJbXGQQbkE6URa5dmqua
 - Business: offering portfolios / CV / personal brand; agent product idea "Atelier" (brief → art direction → build → human polish).

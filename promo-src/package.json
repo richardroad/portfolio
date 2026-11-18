@@ -1,0 +1,2 @@
+{ "name": "rr-story", "private": true, "version": "1.0.0",
+  "dependencies": { "remotion": "4.0.545", "@remotion/cli": "4.0.545", "react": "18.3.1", "react-dom": "18.3.1" } }
