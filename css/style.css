@@ -120,6 +120,7 @@ a { color: inherit; text-decoration: none; }
 }
 .menu a:hover { color: #fff; text-shadow: 0 0 18px #c9a45c88; }
 .menu a:hover::after { width: 70%; left: 15%; }
+.astro { display: none; }
 .dash { height: clamp(8px, 1.4vw, 18px); background: url(../img/divider-dash.webp) center / 100% 100% no-repeat; opacity: .75; mix-blend-mode: screen; }
 
 @media (max-width: 640px) {
@@ -133,9 +134,18 @@ a { color: inherit; text-decoration: none; }
   /* stacked menu with spinning gold ornaments between the sections */
   .menu { grid-template-columns: 1fr; gap: 6px; justify-items: center; padding-block: 22px 26px; }
   .menu .orn { width: 26px; animation: spin 14s linear infinite; }
-  .menu .orn:first-child, .menu .orn:last-child { display: none; }
+  .menu .orn:first-of-type, .menu .orn:last-of-type { display: none; }
   .menu a { font-size: 18px; letter-spacing: .08em; padding-block: 6px; }
   .dash { display: none; }                 /* no road-marking dashes on phones */
+  /* gold astrolabes peeking in from both edges, axis through the middle menu item */
+  .hero { overflow-x: clip; }
+  .menu { position: relative; }
+  .menu a, .menu .orn { position: relative; z-index: 1; }
+  .astro { display: block; position: absolute; inset: 0; pointer-events: none; }
+  .astro { --as: min(262px, 66vw); }
+  .astro img { position: absolute; top: 50%; width: var(--as); height: var(--as); max-width: none; margin-top: calc(var(--as) / -2); opacity: .55; }
+  .astro img:first-child { left: calc(var(--as) * -.64); }
+  .astro img:last-child { right: calc(var(--as) * -.64); transform: scaleX(-1); }
   /* wings slowly "breathe" (spread ~2%); the sheen layer moves with them so the light stays on the feathers */
   .hero .wings, .hero .shine { transform-origin: 50% 45%; animation: breathe 6s ease-in-out infinite; will-change: transform; }
 }
