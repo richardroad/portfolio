@@ -336,7 +336,7 @@
     const track = box.querySelector('.carousel'), bar = box.querySelector('.bar i');
     const prev = box.querySelector('.prev'), nxt = box.querySelector('.nxt');
     if (!track) return;
-    const step = () => { const li = track.querySelector('li'); return li ? li.getBoundingClientRect().width + 14 : track.clientWidth; };
+    const step = () => { const it = track.firstElementChild; return it ? it.getBoundingClientRect().width + 14 : track.clientWidth; };
     const update = () => {
       const max = track.scrollWidth - track.clientWidth;
       const vis = track.clientWidth / track.scrollWidth;
