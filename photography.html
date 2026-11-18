@@ -21,9 +21,9 @@
 <script>(function(c){c.add('js');try{var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&!sessionStorage.getItem('rrSeen'))c.add('pre');if(!('onpagereveal' in window)&&sessionStorage.getItem('rrNav')){c.add('enter');sessionStorage.removeItem('rrNav')}}catch(e){}})(document.documentElement.classList)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Cormorant+Garamond:ital,wght@1,300&family=Silkscreen&family=DM+Serif+Display&family=IBM+Plex+Mono&display=swap">
-<link rel="stylesheet" href="css/style.css?v=2611180354">
-<link rel="stylesheet" href="css/photo.css?v=2611180354">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Silkscreen&family=DM+Serif+Display&family=IBM+Plex+Mono&display=swap">
+<link rel="stylesheet" href="css/style.css?v=2611180442">
+<link rel="stylesheet" href="css/photo.css?v=2611180442">
 </head>
 <body class="photo">
 <div class="preloader" aria-hidden="true">
@@ -45,13 +45,15 @@
   </div>
 </header>
 
+<div class="safelight" aria-hidden="true"></div>
 <main class="wrap">
   <section class="p-hero">
+    <div class="bulb" aria-hidden="true"></div>
     <svg class="rr-logo" viewBox="0 0 460 300" role="img" aria-label="RR">
       <defs>
         <radialGradient id="g" cx=".5" cy=".55" r=".5">
-          <stop offset="0" stop-color="#d9a066" stop-opacity=".45"/>
-          <stop offset="1" stop-color="#d9a066" stop-opacity="0"/>
+          <stop offset="0" stop-color="#c62a20" stop-opacity=".35"/>
+          <stop offset="1" stop-color="#c62a20" stop-opacity="0"/>
         </radialGradient>
       </defs>
       <ellipse class="glow" cx="230" cy="160" rx="230" ry="140" fill="url(#g)"/>
@@ -59,17 +61,44 @@
       <text class="mark stroke" x="230" y="240" text-anchor="middle">RR</text>
     </svg>
     <h1>Photography</h1>
-    <p class="sub">Selected frames</p>
+    <p class="sub">portraits · soft light · dark rooms</p>
   </section>
 
-  <div class="p-head"><h2>Selected</h2><span>00 / 10</span></div>
-  <section class="grid" data-gallery="photos"><figure class="shot empty wide"><div class="pic"><span>01</span></div><figcaption><span>01</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>02</span></div><figcaption><span>02</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>03</span></div><figcaption><span>03</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>04</span></div><figcaption><span>04</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>05</span></div><figcaption><span>05</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>06</span></div><figcaption><span>06</span><span>coming soon</span></figcaption></figure><figure class="shot empty wide"><div class="pic"><span>07</span></div><figcaption><span>07</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>08</span></div><figcaption><span>08</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>09</span></div><figcaption><span>09</span><span>coming soon</span></figcaption></figure><figure class="shot empty "><div class="pic"><span>10</span></div><figcaption><span>10</span><span>coming soon</span></figcaption></figure></section>
+  <section class="series" aria-label="Work for @sachiko_________" data-gallery="s1">
+    <header class="s-head reveal">
+      <p class="wf">work for</p>
+      <a class="s-name" href="https://instagram.com/sachiko_________" target="_blank" rel="noopener">@sachiko<span class="tail" style="--n:3.78em" aria-hidden="true"></span></a>
+      <div class="s-rule" aria-hidden="true"><i></i><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3"/><path d="M10 2v5M10 13v5M2 10h5M13 10h5"/></svg><i></i></div>
+      <p class="s-meta">series · coming soon</p>
+    </header>
+    <div class="s-grid"><figure class="shot empty reveal full"><div class="pic"><span>frame 01</span></div></figure><figure class="shot empty reveal "><div class="pic"><span>frame 02</span></div></figure><figure class="shot empty reveal "><div class="pic"><span>frame 03</span></div></figure><figure class="shot empty reveal full"><div class="pic"><span>frame 04</span></div></figure></div>
+  </section>
+
+  <section class="series" aria-label="Work for @pukhalska" data-gallery="s2">
+    <header class="s-head reveal">
+      <p class="wf">work for</p>
+      <a class="s-name" href="https://instagram.com/pukhalska" target="_blank" rel="noopener">@pukhalska</a>
+      <div class="s-rule" aria-hidden="true"><i></i><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3"/><path d="M10 2v5M10 13v5M2 10h5M13 10h5"/></svg><i></i></div>
+      <p class="s-meta">series · coming soon</p>
+    </header>
+    <div class="s-grid"><figure class="shot empty reveal full"><div class="pic"><span>frame 01</span></div></figure><figure class="shot empty reveal "><div class="pic"><span>frame 02</span></div></figure><figure class="shot empty reveal "><div class="pic"><span>frame 03</span></div></figure><figure class="shot empty reveal full"><div class="pic"><span>frame 04</span></div></figure></div>
+  </section>
+
+  <section class="series" aria-label="Work for @suzys.arts" data-gallery="s3">
+    <header class="s-head reveal">
+      <p class="wf">work for</p>
+      <a class="s-name" href="https://instagram.com/suzys.arts" target="_blank" rel="noopener">@suzys.arts</a>
+      <div class="s-rule" aria-hidden="true"><i></i><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3"/><path d="M10 2v5M10 13v5M2 10h5M13 10h5"/></svg><i></i></div>
+      <p class="s-meta">series · coming soon</p>
+    </header>
+    <div class="s-grid"><figure class="shot empty reveal full"><div class="pic"><span>frame 01</span></div></figure><figure class="shot empty reveal "><div class="pic"><span>frame 02</span></div></figure><figure class="shot empty reveal "><div class="pic"><span>frame 03</span></div></figure><figure class="shot empty reveal full"><div class="pic"><span>frame 04</span></div></figure></div>
+  </section>
 
   <div class="p-head"><h2>Notes</h2></div>
   <section class="p-notes reveal">
     <div>
       <p>This is where my photography lives: real light, real places, real people.</p>
-      <p>The AI work sits on its own page. Here every frame is a photograph.</p>
+      <p>Every series starts with a real camera. Some frames were finished with a touch of AI retouching.</p>
     </div>
     <dl>
       <dt>Based in</dt><dd>Netherlands</dd>
@@ -86,6 +115,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=2611180354"></script>
+<script src="js/main.js?v=2611180442"></script>
 </body>
 </html>
