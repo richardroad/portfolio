@@ -63,12 +63,13 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 .s-grid .full { grid-column: 1 / -1; }
 .shot { margin: 0; min-width: 0; }
 .shot .pic { display: block; width: 100%; padding: 0; border: 0; background: var(--p-surface); cursor: zoom-in; position: relative; overflow: hidden; }
-.shot img { width: 100%; height: auto; display: block; transition: transform .8s ease; }
-.shot .pic:hover img { transform: scale(1.02); }
+.shot img, .shot video { width: 100%; height: auto; display: block; transition: transform .8s ease; }
+.shot.pair img { aspect-ratio: 3 / 4; object-fit: cover; }
+.shot .pic:hover img, .shot .pic:hover video { transform: scale(1.02); }
 /* develop: each photo surfaces from the red of the darkroom into colour */
 .js .shot.reveal { opacity: 1; transform: none; }
-.js .shot.reveal img { filter: sepia(1) saturate(5) hue-rotate(-28deg) brightness(.28) contrast(1.2); transition: filter 2.4s cubic-bezier(.3,.6,.2,1), transform .8s ease; }
-.js .shot.reveal.in img { filter: none; }
+.js .shot.reveal img, .js .shot.reveal video { filter: sepia(1) saturate(5) hue-rotate(-28deg) brightness(.28) contrast(1.2); transition: filter 3.4s cubic-bezier(.55,0,.3,1) .15s, transform .8s ease; }
+.js .shot.reveal.in img, .js .shot.reveal.in video { filter: none; }
 
 /* empty frames until the photos arrive */
 .shot.empty .pic { cursor: default; aspect-ratio: 4 / 5; display: grid; place-items: center; border: 1px solid var(--p-line);
@@ -99,6 +100,6 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 @media (prefers-reduced-motion: reduce) {
   .rr-logo .stroke { stroke-dashoffset: 0; }
   .rr-logo .fill { opacity: 1; }
-  .js .shot.reveal img { filter: none; }
+  .js .shot.reveal img, .js .shot.reveal video { filter: none; }
   .js .shot.empty.reveal .pic { opacity: 1; }
 }
