@@ -7,8 +7,9 @@ body.art { background: var(--a-black); color: var(--a-bone); }
 /* hero: the room is dark; a torch (pointer / finger / drifting) reveals the work */
 .a-hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; cursor: none; touch-action: pan-y; }
 .a-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; filter: saturate(1.1) contrast(1.05); transform: scale(1.06); }
-.torch { position: absolute; inset: 0; pointer-events: none; --x: 50%; --y: 55%; --r: 22vmax;
-  background: radial-gradient(circle var(--r) at var(--x) var(--y), transparent 0, rgba(0,0,0,.35) 38%, rgba(0,0,0,.93) 72%, #000 100%); }
+.torch { position: absolute; left: 0; top: 0; width: 320vmax; height: 320vmax; margin: -160vmax 0 0 -160vmax; pointer-events: none; will-change: transform;
+  transform: translate3d(50vw, 55vh, 0);
+  background: radial-gradient(circle 22vmax at 50% 50%, transparent 0, rgba(0,0,0,.35) 38%, rgba(0,0,0,.93) 72%, #000 100%); }
 .a-hero-text { position: absolute; left: 0; right: 0; bottom: max(9vh, 64px); padding: 0 24px; text-align: center; pointer-events: none; }
 .a-hero h1 { margin: 0; font-family: "Cormorant Garamond", serif; font-weight: 300; font-style: italic; font-size: clamp(44px, 8vw, 112px); line-height: .92; letter-spacing: -.01em; color: var(--a-bone); text-shadow: 0 2px 40px #000; }
 .hint { margin: 22px 0 0; font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 18px; color: var(--a-dim); }
@@ -27,9 +28,26 @@ body.art { background: var(--a-black); color: var(--a-bone); }
 .caption h2, .first-text h2 { margin: 0; font-family: "Cormorant Garamond", serif; font-weight: 400; font-style: italic; font-size: clamp(34px, 4vw, 52px); color: var(--a-bone); }
 .caption p, .first-text p { margin: 0; color: var(--a-dim); max-width: 46ch; line-height: 1.7; }
 @media (max-width: 700px) {
-  .triptych { grid-template-columns: 1fr; gap: 14px; transform: none !important; }
-  .panel, .panel.mid { aspect-ratio: 4 / 5; transform: none; }
+  /* phones: the triptych becomes a swipeable strip that opens on the rose */
+  .triptych-wrap { padding-left: 0; padding-right: 0; }
+  .triptych { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 10px 11vw 30px; transform: none !important; }
+  .triptych::-webkit-scrollbar { display: none; }
+  .panel, .panel.mid { flex: 0 0 78vw; aspect-ratio: 3 / 4; scroll-snap-align: center; transform: none; }
+  .caption { padding: 0 24px; }
+  .dots { display: flex; justify-content: center; gap: 8px; margin-top: 4px; }
+  .dots i { width: 6px; height: 6px; border-radius: 50%; background: #ffffff30; transition: background .3s, transform .3s; }
+  .dots i.on { background: var(--a-ember); transform: scale(1.3); }
 }
+.dots { display: none; }
+
+/* the mark of this page: an R and its own shadow, mirrored */
+.a-mark { display: block; margin: 0 auto 18px; width: clamp(86px, 9vw, 120px); overflow: visible; }
+.a-mark text { font-family: "Cormorant Garamond", serif; font-weight: 400; font-size: 120px; }
+.a-mark .r1 { fill: var(--a-bone); }
+.a-mark .r2 { fill: none; stroke: var(--a-ember); stroke-width: 1.4; transform-origin: 62px 50%; animation: shade 7s ease-in-out infinite; }
+@keyframes shade { 0%, 100% { opacity: .55; transform: scaleX(-1) skewY(-6deg); } 50% { opacity: .95; transform: scaleX(-1) skewY(4deg); } }
+.topbar .home .a-top { font-family: "Cormorant Garamond", serif; font-size: 30px; line-height: 1; color: var(--a-bone); display: inline-flex; }
+.topbar .home .a-top b { font-weight: 400; display: inline-block; transform: scaleX(-1); color: var(--a-ember); margin-left: -.18em; }
 
 /* first AI image: stone and gold, a slow light crossing the gold veins */
 .first { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: clamp(28px, 6vw, 90px); align-items: center; max-width: 1180px; margin: clamp(110px, 14vw, 200px) auto 0; padding: 0 24px; }
@@ -56,8 +74,8 @@ body.art { background: var(--a-black); color: var(--a-bone); }
 .art .page-end { margin-top: clamp(100px, 12vw, 160px); }
 
 @media (prefers-reduced-motion: reduce) {
-  .torch { background: radial-gradient(circle 60vmax at 50% 50%, transparent 0, rgba(0,0,0,.6) 70%, #000); }
-  .first-img img, .glint, .glint::before { animation: none; }
+  .torch { width: 100%; height: 100%; margin: 0; transform: none !important; background: radial-gradient(circle 60vmax at 50% 50%, transparent 0, rgba(0,0,0,.6) 70%, #000); }
+  .first-img img, .glint, .glint::before, .a-mark .r2 { animation: none; }
   .glint { display: none; }
   .manifesto p { color: var(--a-bone); }
 }

@@ -132,7 +132,7 @@
   }
 
   // Custom cursor: gold dot + trailing ring, mouse/trackpad only
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  if (false) {   // custom cursor switched off (felt heavy on desktop)
     const c = document.createElement('div');
     c.className = 'cursor';
     c.setAttribute('aria-hidden', 'true');
@@ -418,29 +418,31 @@
     v.addEventListener('ended', () => { f.classList.remove('playing'); v.controls = false; v.currentTime = 0; });
   });
 
-  // Art & Design: torch that lights the dark room (pointer, finger, or a slow drift when idle)
+  // Art & Design: torch that lights the dark room (pointer, finger, or a slow drift when idle).
+  // The dark layer is one big pre-drawn gradient that only moves (transform), so nothing repaints per frame.
   const torchHost = document.querySelector('[data-torch]');
   if (torchHost) {
     const t = torchHost.querySelector('.torch');
-    let tx = .5, ty = .55, x = .5, y = .55, idle = 0, last = performance.now(), visible = true;
-    const set = (cx, cy) => { const r = torchHost.getBoundingClientRect(); tx = (cx - r.left) / r.width; ty = (cy - r.top) / r.height; idle = 0; };
+    let W = 0, H = 0, tx = .5, ty = .55, x = .5, y = .55, idle = 0, last = performance.now(), visible = true, running = false;
+    const measure = () => { W = torchHost.clientWidth; H = torchHost.clientHeight; };
+    measure(); addEventListener('resize', measure);
+    const kick = () => { if (!running && visible) { running = true; last = performance.now(); requestAnimationFrame(tick); } };
+    let wake; const later = () => { clearTimeout(wake); wake = setTimeout(kick, 2700); };
+    const set = (cx, cy) => { const r = torchHost.getBoundingClientRect(); tx = (cx - r.left) / r.width; ty = (cy - r.top) / r.height; idle = 0; kick(); later(); };
     torchHost.addEventListener('pointermove', (e) => set(e.clientX, e.clientY), { passive: true });
     torchHost.addEventListener('touchmove', (e) => set(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
     torchHost.addEventListener('touchstart', (e) => set(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
-    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { const was = visible; visible = e.isIntersecting; if (visible && !was) requestAnimationFrame(tick); }).observe(torchHost);
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) kick(); }).observe(torchHost);
     function tick(now) {
-      if (!visible) return;
-      const dt = now - last; last = now; idle += dt;
-      if (idle > 2500 && !reduced) {            // nobody is holding the light: let it wander slowly
-        const k = now / 1000;
-        tx = .5 + Math.sin(k * .31) * .26; ty = .5 + Math.sin(k * .23 + 1) * .2;
-      }
-      x += (tx - x) * .08; y += (ty - y) * .08;
-      t.style.setProperty('--x', (x * 100).toFixed(2) + '%');
-      t.style.setProperty('--y', (y * 100).toFixed(2) + '%');
+      if (!visible) { running = false; return; }
+      const dt = Math.min(64, now - last); last = now; idle += dt;
+      if (idle > 2500 && !reduced) { const k = now / 1000; tx = .5 + Math.sin(k * .31) * .26; ty = .5 + Math.sin(k * .23 + 1) * .2; }
+      x += (tx - x) * .09; y += (ty - y) * .09;
+      t.style.transform = `translate3d(${(x * W).toFixed(1)}px, ${(y * H).toFixed(1)}px, 0)`;
+      if (idle <= 2500 && Math.abs(tx - x) + Math.abs(ty - y) < .0005) { running = false; return; }   // settled: stop until the next move
       requestAnimationFrame(tick);
     }
-    requestAnimationFrame(tick);
+    kick(); later();
   }
 
   // Art & Design: the triptych tilts as one altarpiece toward the pointer (desktop only)
@@ -454,6 +456,18 @@
       tilt.style.setProperty('--rx', (-py * 5).toFixed(2) + 'deg');
     });
     host.addEventListener('pointerleave', () => { tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--rx', '0deg'); });
+  }
+
+  // Art & Design (phones): the triptych strip opens on the rose; dots follow the swipe
+  const strip = document.querySelector('.triptych');
+  if (strip && matchMedia('(max-width: 700px)').matches) {
+    const mid = strip.querySelector('.mid'), dots = document.querySelectorAll('.dots i');
+    requestAnimationFrame(() => { strip.scrollLeft = mid.offsetLeft - (strip.clientWidth - mid.clientWidth) / 2; });
+    strip.addEventListener('scroll', () => {
+      const c = strip.scrollLeft + strip.clientWidth / 2; let best = 0, bd = 1e9;
+      [...strip.children].forEach((el, i) => { const d = Math.abs(el.offsetLeft + el.clientWidth / 2 - c); if (d < bd) { bd = d; best = i; } });
+      dots.forEach((d, i) => d.classList.toggle('on', i === best));
+    }, { passive: true });
   }
 
   // Art & Design: manifesto stanzas warm up as they reach the middle of the screen

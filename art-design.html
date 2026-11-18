@@ -22,8 +22,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Silkscreen&display=swap">
-<link rel="stylesheet" href="css/style.css?v=2611181937">
-<link rel="stylesheet" href="css/art.css?v=2611181937">
+<link rel="stylesheet" href="css/style.css?v=2611181945">
+<link rel="stylesheet" href="css/art.css?v=2611181945">
 </head>
 <body class="art">
 <div class="preloader" aria-hidden="true">
@@ -34,7 +34,7 @@
 
 <header class="topbar">
   <div class="wrap">
-    <a class="home" href="index.html"><img class="mark" src="img/rr-chrome-mark-cut.webp" alt="RR home"><span>Richard Road</span></a>
+    <a class="home" href="index.html" aria-label="RR home"><span class="a-top" aria-hidden="true">R<b>R</b></span><span>Richard Road</span></a>
     <nav aria-label="Sections">
       <a href="ai-production.html">AI production</a>
       <a href="photography.html">Photography</a>
@@ -47,6 +47,7 @@
     <img class="a-hero-img" src="img/art/embers-rose.webp" alt="A dark red rosebud lying on red satin">
     <div class="torch" aria-hidden="true"></div>
     <div class="a-hero-text">
+      <svg class="a-mark" viewBox="0 0 124 100" role="img" aria-label="RR"><text class="r2" x="62" y="88" text-anchor="end">R</text><text class="r1" x="62" y="88" text-anchor="end">R</text></svg>
       <h1>Where light<br>learns its shape</h1>
       <p class="hint"><span class="hint-mouse">Move to light the room</span><span class="hint-touch">Touch to light the room</span></p>
     </div>
@@ -58,6 +59,7 @@
       <button type="button" class="panel mid" data-full="img/art/embers-rose.webp"><img src="img/art/embers-rose-sm.webp" alt="A rosebud on red satin" loading="lazy"></button>
       <button type="button" class="panel" data-full="img/art/embers-canopy.webp"><img src="img/art/embers-canopy-sm.webp" alt="Looking up into a red tree canopy" loading="lazy"></button>
     </div>
+    <div class="dots" aria-hidden="true"><i></i><i class="on"></i><i></i></div>
     <div class="caption">
       <h2 id="embers-title">Embers</h2>
       <p>Triptych, 2025. Shot on iPhone, colour and texture reworked with AI.</p>
@@ -90,6 +92,6 @@
     <a href="index.html"><small>Next</small><span>Home <i class="arrow r">→</i></span></a>
   </div>
 </footer>
-<script src="js/main.js?v=2611181937"></script>
+<script src="js/main.js?v=2611181945"></script>
 </body>
 </html>
