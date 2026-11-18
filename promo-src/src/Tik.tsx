@@ -36,7 +36,7 @@ const Shot: React.FC<{ clip: string; from: number; len: number; label: string }>
       </AbsoluteFill>
       <AbsoluteFill style={{ background: 'linear-gradient(transparent 58%, #000000cc 78%, transparent 92%)' }} />
       <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 560 }}>
-        <div style={{ opacity: lab, transform: `translateY(${(1 - lab) * 20}px)`, fontFamily: 'Corm', fontStyle: 'italic', fontSize: 66, color: '#f2ece2', textShadow: '0 3px 24px #000', textAlign: 'center', padding: '0 80px' }}>{label}</div>
+        <div style={{ opacity: lab, transform: `translateY(${(1 - lab) * 20}px) scale(${.96 + .04 * lab})`, fontFamily: 'Noto', fontWeight: 600, fontSize: 50, lineHeight: 1.2, color: '#fff', textAlign: 'center', whiteSpace: 'nowrap', padding: '14px 34px', background: '#000000a6', borderRadius: 16, borderBottom: '3px solid #c9a45c' }}>{label[0].toUpperCase() + label.slice(1)}</div>
       </AbsoluteFill>
       <AbsoluteFill style={{ background: '#fff', opacity: flash }} />
     </AbsoluteFill>
