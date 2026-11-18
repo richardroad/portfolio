@@ -208,7 +208,7 @@ a { color: inherit; text-decoration: none; }
   position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 16px;
   margin-top: clamp(64px, calc(10vw + 4px), 144px); padding-right: clamp(18px, 4vw, 56px); font-family: var(--serif); font-size: clamp(16px, 1.8vw, 22px); letter-spacing: .32em; text-transform: uppercase; color: var(--ink);
 }
-.contacts > .wrap { padding-bottom: 50px; }   /* keeps the old section height so the thorns background sits as before */
+.contacts > .wrap { padding-bottom: 50px; min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; }   /* keeps the old section height so the thorns background sits as before */
 @media (max-width: 640px) { .contacts > .wrap { padding-bottom: 66px; } }
 /* Next sits in the dark band between the thorns and the page bottom; moved visually so the section height (and the thorns) stay put */
 .next { transform: translateY(60px); }
@@ -551,7 +551,8 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Who I am + what I offer (home) ---------- */
 .tagline { position: relative; z-index: 1; margin: 18px auto 0; padding: 0 20px; text-align: center; font-family: "Cormorant Garamond", var(--serif); font-style: italic; font-weight: 300; font-size: clamp(17px, 1.7vw, 22px); color: var(--ink-dim); letter-spacing: .02em; }
-.tagline i { font-style: normal; color: var(--gold); padding: 0 .3em; }
+.tagline span { display: block; }
+.tagline span:first-child { color: var(--ink); font-size: 1.12em; }
 .offer { padding-block: clamp(70px, 10vw, 140px) clamp(40px, 6vw, 80px); }
 .offer-kicker { margin: 0; font-family: var(--pixel); font-size: 11px; letter-spacing: .35em; color: var(--gold); text-transform: uppercase; display: flex; align-items: center; gap: 14px; }
 .offer-kicker::before { content: ""; width: 40px; height: 1px; background: var(--gold); }
