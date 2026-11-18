@@ -128,3 +128,9 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
   .p-hero .frame, .p-hero h1, .p-hero .sub, .expo { animation: none; }
   .vf i { opacity: .55; animation: none; }
 }
+
+/* sub-series inside one client (e.g. a second shoot) */
+.s-sub { text-align: center; margin-top: clamp(40px, 6vw, 72px); }
+.s-sub-line { display: block; width: 1px; height: 38px; margin: 0 auto 14px; background: linear-gradient(transparent, #c9504a99); }
+.s-sub-name { margin: 0; font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: clamp(26px, 3.6vw, 36px); color: var(--p-ink); letter-spacing: .02em; }
+.s-sub .s-meta { margin-top: 6px; }
