@@ -336,7 +336,7 @@
     const track = box.querySelector('.carousel'), bar = box.querySelector('.bar i');
     const prev = box.querySelector('.prev'), nxt = box.querySelector('.nxt');
     if (!track) return;
-    const step = () => { const it = track.firstElementChild; return it ? it.getBoundingClientRect().width + 14 : track.clientWidth; };
+    const step = () => { const it = track.firstElementChild; return Math.min(it ? it.getBoundingClientRect().width + 14 : 1e9, track.clientWidth * .85); };
     const update = () => {
       const max = track.scrollWidth - track.clientWidth;
       const vis = track.clientWidth / track.scrollWidth;
@@ -347,6 +347,8 @@
     prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
     nxt.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
     track.addEventListener('scroll', update, { passive: true });
+    track.querySelectorAll('img').forEach((im) => im.addEventListener('load', update));
+    if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
     addEventListener('resize', update);
     update();
   });
