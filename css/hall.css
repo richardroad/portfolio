@@ -1,0 +1,35 @@
+/* Pseudo-3D gallery hall (mock-up). Pure CSS 3D: the world moves toward the viewer as you scroll. */
+.hall { --cw: 980px; --fw: 300px; --gap: 520px; --len: 4200px; height: 520vh; position: relative; }
+.hall-stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; perspective: 700px; perspective-origin: 50% 46%; background: #000; }
+.world { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; transform: translate3d(0, 0, var(--z, 0px)); will-change: transform; }
+.wall, .floor, .ceil { position: absolute; left: 0; top: 0; }
+.wall { width: var(--len); height: 640px; margin: -320px 0 0 calc(var(--len) / -2);
+  background: linear-gradient(90deg, #000 0%, #120809 30%, #2a1012 78%, #3a1517 100%); }
+.wall::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 var(--gap), #00000055 var(--gap) calc(var(--gap) + 2px)); }
+.wall.l { transform: translate3d(calc(var(--cw) / -2), 0, calc(var(--len) / -2)) rotateY(90deg); }
+.wall.r { transform: translate3d(calc(var(--cw) / 2), 0, calc(var(--len) / -2)) rotateY(-90deg); background: linear-gradient(-90deg, #000 0%, #120809 30%, #2a1012 78%, #3a1517 100%); }
+.floor { width: var(--cw); height: var(--len); margin: calc(var(--len) / -2) 0 0 calc(var(--cw) / -2);
+  transform: translate3d(0, 320px, calc(var(--len) / -2)) rotateX(90deg);
+  background: linear-gradient(0deg, #1a0a0b, #000 75%), repeating-linear-gradient(0deg, transparent 0 120px, #ffffff08 120px 121px); }
+.ceil { width: var(--cw); height: var(--len); margin: calc(var(--len) / -2) 0 0 calc(var(--cw) / -2); transform: translate3d(0, -320px, calc(var(--len) / -2)) rotateX(-90deg); background: linear-gradient(0deg, #0a0405, #000 60%); }
+
+.frame { position: absolute; left: 0; top: 0; margin: 0 0 0 calc(var(--fw) / -2); width: var(--fw); transform-style: preserve-3d; }
+.frame button { display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: #000;
+  box-shadow: 0 0 0 10px #0d0707, 0 0 0 11px #3a2620, 0 30px 70px #000; }
+.frame img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.frame.sq img { aspect-ratio: 1; }
+/* each work is lit: a warm halo on the wall around the frame */
+.frame button { box-shadow: 0 0 0 10px #0d0707, 0 0 0 11px #3a2620, 0 -40px 120px 20px #c2281f22, 0 30px 70px #000; }
+.frame figcaption { margin-top: 26px; font-family: "Cormorant Garamond", serif; font-size: 15px; color: #a89a8d; line-height: 1.4; }
+.frame figcaption b { display: block; font-weight: 400; font-style: italic; font-size: 22px; color: #e9e0d4; }
+.frame.l { transform: translate3d(calc(var(--cw) / -2 + 6px), -58%, calc(-420px - var(--i) * var(--gap))) rotateY(90deg); }
+.frame.r { transform: translate3d(calc(var(--cw) / 2 - 6px), -58%, calc(-680px - (var(--i) - 1) * var(--gap))) rotateY(-90deg); }
+.frame.end { width: calc(var(--fw) * 1.3); margin-left: calc(var(--fw) * -.65); transform: translate3d(0, -58%, calc(var(--len) * -1 + 40px)); text-align: center; }
+.hall-hint { position: absolute; left: 0; right: 0; bottom: 28px; text-align: center; margin: 0; font-family: "Cormorant Garamond", serif; font-style: italic; color: #8f857a; transition: opacity .6s; }
+.hall.walking .hall-hint { opacity: 0; }
+
+@media (max-width: 700px) {
+  .hall { --cw: 420px; --fw: 170px; --gap: 380px; --len: 3200px; }
+  .hall-stick { perspective: 420px; }
+  .frame figcaption { font-size: 12px; margin-top: 16px; } .frame figcaption b { font-size: 17px; }
+}

@@ -41,13 +41,13 @@ body.art { background: var(--a-black); color: var(--a-bone); }
 .dots { display: none; }
 
 /* the mark of this page: an R and its own shadow, mirrored */
-.a-mark { display: block; margin: 0 auto 18px; width: clamp(86px, 9vw, 120px); overflow: visible; }
+.a-mark { position: absolute; z-index: 2; left: 50%; top: calc(76px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); width: clamp(96px, 10vw, 132px); overflow: visible; pointer-events: none; filter: drop-shadow(0 0 18px #000); }
 .a-mark text { font-family: "Cormorant Garamond", serif; font-weight: 400; font-size: 120px; }
 .a-mark .r1 { fill: var(--a-bone); }
-.a-mark .r2 { fill: none; stroke: var(--a-ember); stroke-width: 1.4; transform-origin: 62px 50%; animation: shade 7s ease-in-out infinite; }
+.a-mark .r2 { fill: none; stroke: var(--a-ember); stroke-width: 1.6; transform-box: fill-box; transform-origin: 50% 50%; animation: shade 7s ease-in-out infinite; }
 @keyframes shade { 0%, 100% { opacity: .55; transform: scaleX(-1) skewY(-6deg); } 50% { opacity: .95; transform: scaleX(-1) skewY(4deg); } }
 .topbar .home .a-top { font-family: "Cormorant Garamond", serif; font-size: 30px; line-height: 1; color: var(--a-bone); display: inline-flex; }
-.topbar .home .a-top b { font-weight: 400; display: inline-block; transform: scaleX(-1); color: var(--a-ember); margin-left: -.18em; }
+.topbar .home .a-top b { font-weight: 400; display: inline-block; transform: scaleX(-1); color: var(--a-ember); margin-right: .02em; }
 
 /* first AI image: stone and gold, a slow light crossing the gold veins */
 .first { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: clamp(28px, 6vw, 90px); align-items: center; max-width: 1180px; margin: clamp(110px, 14vw, 200px) auto 0; padding: 0 24px; }
