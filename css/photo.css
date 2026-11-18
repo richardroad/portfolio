@@ -46,6 +46,28 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 .p-hero h1 { margin: 6px 0 0; font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: clamp(40px, 6vw, 64px); letter-spacing: .01em; }
 .p-hero .sub { margin: 8px 0 0; font-family: var(--mono); font-size: 11px; color: #c9504a; letter-spacing: .18em; text-transform: uppercase; }
 
+/* hero: focus pull, viewfinder corners, dust in the beam, exposure readout */
+.p-hero { position: relative; }
+.dust { position: absolute; left: 50%; top: -120px; width: min(100vw, 900px); height: calc(100% + 120px); transform: translateX(-50%); pointer-events: none; z-index: 0; }
+.p-hero > *:not(.dust) { position: relative; z-index: 1; }
+.frame { position: relative; width: fit-content; margin: 0 auto; padding: 4px 22px; }
+.p-hero .frame, .p-hero h1, .p-hero .sub { animation: focus 1.6s cubic-bezier(.3,.6,.2,1) .15s both; }
+@keyframes focus { 0% { filter: blur(9px); opacity: .35; } 55% { filter: blur(1.5px); } 70% { filter: blur(2.5px); } 100% { filter: none; opacity: 1; } }
+.vf { position: absolute; inset: 0; pointer-events: none; }
+.vf i { position: absolute; width: 18px; height: 18px; border: 1px solid #ebe7e099; opacity: 0; animation: vf 1.4s cubic-bezier(.2,.8,.2,1) .2s forwards; }
+.vf i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; --x: -34px; --y: -26px; }
+.vf i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; --x: 34px; --y: -26px; }
+.vf i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; --x: -34px; --y: 26px; }
+.vf i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; --x: 34px; --y: 26px; }
+@keyframes vf { 0% { opacity: 0; transform: translate(var(--x), var(--y)); } 60% { opacity: 1; } 100% { opacity: .55; transform: none; } }
+/* focus confirmation: a tiny square blinks red then settles */
+.vf b { position: absolute; left: 50%; top: 52%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border: 1px solid #ff3b30; opacity: 0; animation: af 2s ease 1.2s forwards; }
+@keyframes af { 0%, 20%, 40% { opacity: 0; } 10%, 30% { opacity: .9; } 60% { opacity: .9; } 100% { opacity: 0; } }
+.expo { margin: 14px 0 0; display: flex; justify-content: center; gap: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; color: #8a847a; font-variant-numeric: tabular-nums; animation: focus 1.6s ease .4s both; }
+.expo i { font-style: normal; opacity: .5; }
+.expo span { display: inline-block; min-width: 4.5ch; transition: opacity .25s, color .25s; }
+.expo span.tick { opacity: .25; color: #ff3b30; }
+
 /* series */
 .series { margin: clamp(56px, 9vw, 120px) auto 0; max-width: 880px; }
 .s-head { text-align: center; }
@@ -103,4 +125,6 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
   .rr-logo .fill { opacity: 1; }
   .js .shot.reveal img, .js .shot.reveal video { opacity: 1; filter: none; transform: none; transition: none; }
   .js .shot.empty.reveal .pic { opacity: 1; }
+  .p-hero .frame, .p-hero h1, .p-hero .sub, .expo { animation: none; }
+  .vf i { opacity: .55; animation: none; } .vf b { display: none; }
 }

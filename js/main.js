@@ -353,6 +353,57 @@
     update();
   });
 
+  // Photography hero: dust drifting in the red beam (follows the pointer / phone tilt a little)
+  const dust = document.querySelector('.p-hero .dust');
+  if (dust && !reduced) {
+    const cx = dust.getContext('2d');
+    let W = 0, H = 0, dpr = 1, px = 0, py = 0, tx = 0, ty = 0, on = true;
+    const P = [];
+    const size = () => {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      W = dust.width = dust.clientWidth * dpr; H = dust.height = dust.clientHeight * dpr;
+      P.length = 0;
+      const n = innerWidth < 700 ? 26 : 40;
+      for (let i = 0; i < n; i++) P.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7,
+        r: (.5 + Math.random() * 1.3) * dpr, vy: (.04 + Math.random() * .12) * dpr, ph: Math.random() * 6.28, tw: .4 + Math.random() });
+    };
+    size(); addEventListener('resize', size);
+    addEventListener('pointermove', (e) => { tx = (e.clientX / innerWidth - .5) * 2; ty = (e.clientY / innerHeight - .5) * 2; }, { passive: true });
+    addEventListener('deviceorientation', (e) => { if (e.gamma != null) { tx = Math.max(-1, Math.min(1, e.gamma / 30)); ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30)); } });
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(loop); }).observe(dust);
+    function loop(t) {
+      if (!on) return;
+      px += (tx - px) * .03; py += (ty - py) * .03;
+      cx.clearRect(0, 0, W, H);
+      for (const p of P) {
+        p.y -= p.vy * p.z; p.x += Math.sin(t / 3000 + p.ph) * .08 * dpr;
+        if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+        const x = p.x + px * 22 * p.z * dpr, y = p.y + py * 14 * p.z * dpr;
+        // brighter near the beam's centre (top middle)
+        const beam = Math.max(0, 1 - Math.hypot((x - W / 2) / (W * .42), y / (H * .9)));
+        const a = (.15 + .55 * beam) * (.55 + .45 * Math.sin(t / 1400 * p.tw + p.ph));
+        const g = cx.createRadialGradient(x, y, 0, x, y, p.r * 3);
+        g.addColorStop(0, `rgba(255,${190 - 110 * beam | 0},${170 - 120 * beam | 0},${a})`); g.addColorStop(1, 'rgba(255,80,60,0)');
+        cx.fillStyle = g; cx.beginPath(); cx.arc(x, y, p.r * 3, 0, 6.28); cx.fill();
+      }
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
+
+  // Photography hero: exposure readout quietly re-metering, like a camera display
+  const expo = document.querySelector('.expo');
+  if (expo && !reduced) {
+    const V = { f: ['f/1.4', 'f/1.8', 'f/2', 'f/2.8'], s: ['1/60', '1/80', '1/125', '1/160', '1/200'], iso: ['ISO 200', 'ISO 400', 'ISO 640', 'ISO 800'] };
+    const keys = Object.keys(V);
+    setInterval(() => {
+      const k = keys[Math.random() * keys.length | 0], el = expo.querySelector(`[data-k="${k}"]`);
+      let v; do { v = V[k][Math.random() * V[k].length | 0]; } while (v === el.textContent);
+      el.classList.add('tick');
+      setTimeout(() => { el.textContent = v; el.classList.remove('tick'); }, 220);
+    }, 2600);
+  }
+
   // Lightbox: any [data-full] inside a [data-gallery] group
   const groups = {};
   document.querySelectorAll('[data-gallery] [data-full]').forEach((el) => {

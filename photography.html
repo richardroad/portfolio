@@ -22,8 +22,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Silkscreen&family=DM+Serif+Display&family=IBM+Plex+Mono&display=swap">
-<link rel="stylesheet" href="css/style.css?v=2611180513">
-<link rel="stylesheet" href="css/photo.css?v=2611180513">
+<link rel="stylesheet" href="css/style.css?v=2611180516">
+<link rel="stylesheet" href="css/photo.css?v=2611180516">
 </head>
 <body class="photo">
 <div class="preloader" aria-hidden="true">
@@ -49,19 +49,24 @@
 <main class="wrap">
   <section class="p-hero">
     <div class="bulb" aria-hidden="true"></div>
+    <canvas class="dust" aria-hidden="true"></canvas>
+    <div class="frame">
+      <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></div>
     <svg class="rr-logo" viewBox="0 0 460 300" role="img" aria-label="RR">
-      <defs>
-        <radialGradient id="g" cx=".5" cy=".55" r=".5">
-          <stop offset="0" stop-color="#c62a20" stop-opacity=".35"/>
-          <stop offset="1" stop-color="#c62a20" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <ellipse class="glow" cx="230" cy="160" rx="230" ry="140" fill="url(#g)"/>
-      <text class="mark fill" x="230" y="240" text-anchor="middle">RR</text>
-      <text class="mark stroke" x="230" y="240" text-anchor="middle">RR</text>
-    </svg>
+        <defs>
+          <radialGradient id="g" cx=".5" cy=".55" r=".5">
+            <stop offset="0" stop-color="#c62a20" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#c62a20" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse class="glow" cx="230" cy="160" rx="230" ry="140" fill="url(#g)"/>
+        <text class="mark fill" x="230" y="240" text-anchor="middle">RR</text>
+        <text class="mark stroke" x="230" y="240" text-anchor="middle">RR</text>
+      </svg>
+    </div>
     <h1>Photography</h1>
     <p class="sub">portraits · soft light · quiet moments</p>
+    <p class="expo" aria-hidden="true"><span data-k="f">f/1.8</span><i>·</i><span data-k="s">1/125</span><i>·</i><span data-k="iso">ISO 400</span></p>
   </section>
 
   <section class="series" aria-label="Work for @suzys.arts" data-gallery="s1">
@@ -115,6 +120,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=2611180513"></script>
+<script src="js/main.js?v=2611180516"></script>
 </body>
 </html>
