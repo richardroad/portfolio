@@ -422,6 +422,7 @@
   // The dark layer is one big pre-drawn gradient that only moves (transform), so nothing repaints per frame.
   const torchHost = document.querySelector('[data-torch]');
   if (torchHost) {
+    torchHost.addEventListener('contextmenu', (e) => e.preventDefault()); // no image menu on long-press
     const t = torchHost.querySelector('.torch');
     let W = 0, H = 0, tx = .5, ty = .55, x = .5, y = .55, idle = 0, last = performance.now(), visible = true, running = false;
     const measure = () => { W = torchHost.clientWidth; H = torchHost.clientHeight; };

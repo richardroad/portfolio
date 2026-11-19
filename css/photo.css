@@ -107,7 +107,7 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 .p-head h2 { margin: 0; font-weight: 400; font-size: 13px; text-transform: uppercase; letter-spacing: .2em; }
 
 /* notes */
-.p-notes { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 70px); margin-top: 24px; }
+.p-notes { display: grid; grid-template-columns: 1fr; gap: clamp(24px, 5vw, 70px); margin-top: 24px; }
 .p-notes p { margin: 0 0 12px; max-width: 52ch; color: #cfc9bf; }
 .p-notes dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; font-size: 14px; }
 .p-notes dt { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--p-dim); padding-top: 3px; }
@@ -116,7 +116,7 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 .p-notes dd a:hover, .p-notes dd button:hover { color: #fff; border-color: var(--p-warm); }
 @media (max-width: 640px) { .p-notes { grid-template-columns: 1fr; } }
 
-.photo .page-end { margin-top: 90px; }
+.photo .page-end { margin-top: 40px; }
 
 .photo .lb { background: #0c0b0af5; }
 

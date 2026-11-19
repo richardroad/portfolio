@@ -34,9 +34,11 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Series order (user's choice, not strictly chronological), photos surface out of the dark (not red):
   1. @pukhalska_ — 2025, 9 frames, summer by the water
   2. @sachiko_________ — "2025 · shot on iPhone" (3 frames)
+  Notes block: text only (Based in / Instagram / Email list removed); Back/Next sit closer.
   3. @suzys.arts — 2024 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour). HIDDEN for now (commented out in photography.html at the user's request; uncomment to restore).
 
 ## Art & Design (art-design.html, css/art.css)
+- Hero rose: no long-press image menu (touch-callout off, contextmenu blocked); page still scrolls.
 - Custom gold cursor is OFF site-wide (felt laggy). Torch is a transform-moved layer (no per-frame repaint) that sleeps when settled.
 - Page mark: an R and its mirrored ember-red shadow R (hero SVG + topbar).
 - Phones: triptych is a swipe strip that opens on the rose, with dots.
@@ -44,8 +46,8 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Top bar: logo only, no name text, on all pages.
 - Concept "Where light learns its shape" (shadow / self-acceptance). Hero: rose image in a dark room lit by a torch (pointer, finger, idle drift).
 - "Embers" triptych 2025 (confetti canal · rose centre · red canopy), iPhone + AI, tilts as one altarpiece on desktop, stacked on phones.
-- "First light": first AI image (DALL·E 2), gold veins glint (img/art/first-light-mask.webp).
-- Manifesto (English), stanzas warm up at mid-screen. Accent verdigris #5fae93 only on the signature.
+- "First light": first AI image (DALL·E 2), gold veins glint (img/art/first-light-mask.webp). Living print: red/cyan copies drift apart slightly (RGB split) under moving film grain (img/art/grain.png).
+- Manifesto (English), stanzas warm up at mid-screen. Signature "Richard Road" in gold #c9a45c (user's choice, matches the buttons). Manifesto line breaks keep a space so text never runs together on phones.
 - Sain't result line added: Instagram from zero, near-daily merch sales, paid back + profit in a few months, paused by the war.
 
 ## Pending / ideas

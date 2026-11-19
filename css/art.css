@@ -5,8 +5,8 @@ body.art { background: var(--a-black); color: var(--a-bone); }
 .art .wrap { max-width: 1180px; }
 
 /* hero: the room is dark; a torch (pointer / finger / drifting) reveals the work */
-.a-hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; cursor: none; touch-action: pan-y; }
-.a-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; filter: saturate(1.1) contrast(1.05); transform: scale(1.06); }
+.a-hero { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; cursor: none; touch-action: pan-y; }
+.a-hero-img { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; -webkit-user-drag: none; pointer-events: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; filter: saturate(1.1) contrast(1.05); transform: scale(1.06); }
 .torch { position: absolute; left: 0; top: 0; width: 320vmax; height: 320vmax; margin: -160vmax 0 0 -160vmax; pointer-events: none; will-change: transform;
   transform: translate3d(50vw, 55vh, 0);
   background: radial-gradient(circle 22vmax at 50% 50%, transparent 0, rgba(0,0,0,.35) 38%, rgba(0,0,0,.93) 72%, #000 100%); }
@@ -53,7 +53,16 @@ body.art { background: var(--a-black); color: var(--a-bone); }
 .first { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: clamp(28px, 6vw, 90px); align-items: center; max-width: 1180px; margin: clamp(110px, 14vw, 200px) auto 0; padding: 0 24px; }
 .first-img { position: relative; margin: 0; overflow: hidden; }
 .first-img button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
-.first-img img { width: 100%; animation: breathe-img 14s ease-in-out infinite; }
+.first-img img { width: 100%; display: block; }
+/* living print: the image is split into a red and a cyan copy that drift apart and back, under a moving film grain */
+.fl { position: absolute; inset: 0; pointer-events: none; animation: breathe-img 14s ease-in-out infinite; }
+.fl i { position: absolute; inset: -6px; background: url(../img/art/first-light-sm.webp) center / cover no-repeat; background-blend-mode: multiply; }
+.fl-c { background-color: #0ff !important; animation: fl-drift-c 9s ease-in-out infinite; }
+.fl-r { background-color: #f00 !important; mix-blend-mode: screen; animation: fl-drift-r 9s ease-in-out infinite; }
+@keyframes fl-drift-r { 0%, 100% { transform: translate(0, 0); } 30% { transform: translate(3px, -1px); } 55% { transform: translate(-1px, 2px); } 80% { transform: translate(2px, 1px); } }
+@keyframes fl-drift-c { 0%, 100% { transform: translate(0, 0); } 30% { transform: translate(-2px, 1px); } 55% { transform: translate(1px, -1px); } 80% { transform: translate(-1px, 0); } }
+.fl-grain { position: absolute; inset: -50%; pointer-events: none; background: url(../img/art/grain.png); background-size: 180px; opacity: .13; mix-blend-mode: overlay; animation: fl-grain .9s steps(6) infinite; }
+@keyframes fl-grain { 0% { transform: translate(0, 0); } 17% { transform: translate(-6%, 4%); } 33% { transform: translate(5%, -7%); } 50% { transform: translate(-8%, -3%); } 67% { transform: translate(7%, 6%); } 83% { transform: translate(-3%, 8%); } 100% { transform: translate(0, 0); } }
 @keyframes breathe-img { 50% { transform: scale(1.035); } }
 .glint { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: .8;
   -webkit-mask: url(../img/art/first-light-mask.webp) center / cover no-repeat; mask: url(../img/art/first-light-mask.webp) center / cover no-repeat; overflow: hidden; animation: breathe-img 14s ease-in-out infinite; }
@@ -68,14 +77,14 @@ body.art { background: var(--a-black); color: var(--a-bone); }
 .manifesto p { margin: 0 0 1.1em; font-family: "Cormorant Garamond", serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.22; color: #5a4a44; transition: color 1.2s ease; }
 .manifesto p.lit { color: var(--a-bone); }
 .manifesto p.last.lit { color: #fff; }
-.manifesto .sign { font-style: italic; font-size: 20px; color: var(--a-verd); margin-top: 40px; }
-.manifesto .sign.lit { color: var(--a-verd); }
+.manifesto .sign { font-style: italic; font-size: 20px; color: #c9a45c; margin-top: 40px; }
+.manifesto .sign.lit { color: #c9a45c; }
 
 .art .page-end { margin-top: clamp(100px, 12vw, 160px); }
 
 @media (prefers-reduced-motion: reduce) {
   .torch { width: 100%; height: 100%; margin: 0; transform: none !important; background: radial-gradient(circle 60vmax at 50% 50%, transparent 0, rgba(0,0,0,.6) 70%, #000); }
-  .first-img img, .glint, .glint::before, .a-mark .r2 { animation: none; }
+  .first-img img, .glint, .glint::before, .a-mark .r2, .fl, .fl i, .fl-grain { animation: none; }
   .glint { display: none; }
   .manifesto p { color: var(--a-bone); }
 }
