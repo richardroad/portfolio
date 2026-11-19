@@ -26,9 +26,10 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Case headers (premium): a huge outlined red-neon numeral (01/02) draws itself and flickers on, then hums; kicker "CASE 01 — 2025", big Anta title, pill tags (Sain't: Brand from zero · AI visuals · Merch · Instagram; Avito: AI promo films · Real Estate · Auto · Vertical cuts), and a light running along the rule. Reduced motion → static. Numerals: SVG viewBox has room around the glyphs, dash 4000 (WebKit dashes the whole text as one path, a short dash left parts invisible), glow filter on the <svg>, not on <text> (Safari clips it).
 - Red neon theme; footer buttons solid black inside with red neon frame; red cursor.
 - Typing swap "it's not ai → it's us."
-- Sain't intro quote (short, user asked for direct): "The shadow isn't your dark side. / It's the part of you that you were taught to hide." Italic serif, left, thin red line. "AI Photography" is a sub-header (kicker Sain't — Visuals, Anta title, running light). On this page all copy is left-aligned in sentence case; no centred caps blocks.
+- Sain't intro quote (short, user asked for direct): "The shadow isn't your dark side. / It's the part of you that you were taught to hide." Italic serif, left, thin red line. "AI Photography" is a sub-header (kicker Sain't — Visuals, Anta title, running light). On this page copy is left-aligned in sentence case, except one statement ("From visual language to daily communication…"), which is centred in caps (user's choice).
 - Sain't: phones with haze that spreads in after the photo and breathes; short lead + Read more; Selected works carousel (15).
 - Avito result line: "Avito came back and booked us for the next project." Page ends with a CTA styled as an empty "Case 03 — Yours" (dashed numeral, "Your brand next?", red neon buttons: Start a project = mailto, DM on Instagram).
+- Avito format: horizontal and vertical cuts (facts strip + tag).
 - Avito: dark intro (white wordmark, pulsing dots), facts strip, Film 01 (img/avito-film-1.mp4, 720p, tap to play with sound; second film pending), Frames carousel (edge strips cropped), Process carousel (6 steps).
 
 ## Photography (photography.html)

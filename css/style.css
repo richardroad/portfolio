@@ -727,3 +727,9 @@ a { color: inherit; text-decoration: none; }
 .ai-hero { padding-bottom: 150px; }
 main > .case-head:first-child { margin-top: clamp(30px, 4vw, 60px); }
 @media (prefers-reduced-motion: reduce) { .hero-cue i::after { animation: none; } }
+
+/* one statement line in the Sain't case: centred, in caps */
+.ai .copy.statement { max-width: 760px; margin-inline: auto; text-align: center; }
+.ai .copy.statement .lead { text-transform: uppercase; letter-spacing: .08em; font-size: clamp(15px, 1.7vw, 18px); line-height: 1.55; }
+.ai .copy.statement .more summary { justify-content: center; }
+.ai .copy.statement .more > div { text-align: left; }
