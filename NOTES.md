@@ -33,10 +33,10 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Tagline "portraits · soft light · quiet moments".
 - Series order (user's choice, not strictly chronological), photos surface out of the dark (not red):
   0. @p1nskii — "2023 · shot on 35mm · red" (3 frames: lying in red light full width, then bow + lighter pair). Added first at the user's request.
-  1. @pukhalska_ — 2025, 9 frames, summer by the water
+  1. @pukhalska_ — "2025 · summer by the water, barefoot" (frame counts removed from all metas, atmospheric lines instead)
   2. @sachiko_________ — "2025 · shot on iPhone" (3 frames)
   Notes block: text only (Based in / Instagram / Email list removed); Back/Next sit closer.
-  3. @suzys.arts — 2024 monochrome (2) + sub-series "Violet Hour" (2, candlelight, colour). HIDDEN for now (commented out in photography.html at the user's request; uncomment to restore).
+  3. @suzys.arts — "2024 · monochrome · hands, breath, stillness" (2) + sub-series "Violet Hour" (2, candlelight, colour). Restored as the LAST series (user request).
 
 ## Art & Design (art-design.html, css/art.css)
 - Hero rose: no long-press image menu (touch-callout off, contextmenu blocked); page still scrolls.
