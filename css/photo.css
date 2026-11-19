@@ -72,7 +72,7 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 .series { margin: clamp(56px, 9vw, 120px) auto 0; max-width: 880px; }
 .s-head { text-align: center; }
 .s-head .wf { margin: 0; font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: clamp(20px, 2.4vw, 26px); color: #c9504a; }
-.s-name { display: inline-flex; align-items: baseline; gap: 2px; margin-top: 2px; font-family: "Cormorant Garamond", serif; font-weight: 400;
+.s-name { font-variant-numeric: lining-nums; display: inline-flex; align-items: baseline; gap: 2px; margin-top: 2px; font-family: "Cormorant Garamond", serif; font-weight: 400;
   font-size: clamp(32px, 5vw, 52px); letter-spacing: .04em; color: var(--p-ink); line-height: 1.15; transition: color .3s, text-shadow .3s; overflow-wrap: anywhere; }
 .s-name:hover { color: #fff; text-shadow: 0 0 22px #c9504a66; }
 .s-name .tail { display: inline-block; width: var(--n); height: 1px; background: currentColor; opacity: .8; transform: translateY(-.08em); }

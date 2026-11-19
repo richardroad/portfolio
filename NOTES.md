@@ -32,6 +32,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Darkroom: pulsing red safelight bulb, animated RR (draw + develop), focus pull with viewfinder corners (no AF square), dust in the beam (no re-scatter on mobile scroll), live exposure readout (one line, red tick).
 - Tagline "portraits · soft light · quiet moments".
 - Series order (user's choice, not strictly chronological), photos surface out of the dark (not red):
+  0. @p1nskii — "2023 · shot on 35mm · red" (3 frames: lying in red light full width, then bow + lighter pair). Added first at the user's request.
   1. @pukhalska_ — 2025, 9 frames, summer by the water
   2. @sachiko_________ — "2025 · shot on iPhone" (3 frames)
   Notes block: text only (Based in / Instagram / Email list removed); Back/Next sit closer.
