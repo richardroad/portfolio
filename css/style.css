@@ -698,3 +698,20 @@ a { color: inherit; text-decoration: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
 .page-end .neon-lines { opacity: .16; -webkit-mask: linear-gradient(transparent, #000 60%); mask: linear-gradient(transparent, #000 60%); }
+
+/* ---------- AI Production: plain-spoken text, everything on one left edge ---------- */
+.ai .quote { text-align: left; text-transform: none; display: grid; gap: 4px; padding: clamp(28px, 4vw, 44px) 0 clamp(10px, 2vw, 20px) clamp(16px, 2vw, 24px); margin-top: clamp(24px, 3vw, 36px); border-left: 1px solid #ff3b3baa; font-family: "Cormorant Garamond", var(--serif); font-style: italic; font-weight: 300; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.2; letter-spacing: 0; color: var(--ink); }
+.ai .quote p:last-child { color: var(--ink-dim); }
+.sub-head { position: relative; margin-top: clamp(70px, 9vw, 120px); padding-bottom: clamp(14px, 2vw, 22px); }
+.sub-title { margin: 0; font-family: "Anta", sans-serif; font-weight: 400; font-size: clamp(30px, 4.6vw, 56px); line-height: 1; color: #f4efe8; text-shadow: 0 0 24px #ff3b3b22; }
+.js .sub-head.reveal { transform: none; }
+.js .sub-head .ch-kicker, .js .sub-head .sub-title { opacity: 0; transform: translateY(16px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.js .sub-head.in .ch-kicker { opacity: 1; transform: none; transition-delay: .1s; }
+.js .sub-head.in .sub-title { opacity: 1; transform: none; transition-delay: .3s; }
+.js .sub-head.in .ch-line b { animation: ch-run 2.2s cubic-bezier(.5,0,.3,1) .6s; }
+.ai .copy { max-width: 640px; margin-inline: 0; text-align: left; text-transform: none; font-size: 15px; line-height: 1.65; letter-spacing: 0; color: #c9c3b9; }
+.ai .copy .lead { font-size: clamp(17px, 1.9vw, 20px); line-height: 1.45; letter-spacing: 0; color: var(--ink); }
+.ai .copy .more summary { justify-content: flex-start; }
+.ai .more > div { color: #b3ada3; }
+.ai .result-note { max-width: 680px; margin: 60px 0 0; text-align: left; }
+@media (prefers-reduced-motion: reduce) { .js .sub-head .ch-kicker, .js .sub-head .sub-title { opacity: 1; transform: none; transition: none; } }
