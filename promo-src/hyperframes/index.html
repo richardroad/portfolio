@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru" data-resolution="portrait">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=1080, height=1920"><title>RR reel</title>
+<script src="assets/gsap.min.js"></script>
+<style>
+@font-face{font-family:Onest;font-weight:500;src:url(assets/fonts/onest-cyrillic-500-normal.woff2);unicode-range:U+0400-04FF}
+@font-face{font-family:Onest;font-weight:500;src:url(assets/fonts/onest-latin-500-normal.woff2);unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:PfI;font-style:italic;src:url(assets/fonts/playfair-display-cyrillic-400-italic.woff2);unicode-range:U+0400-04FF}
+@font-face{font-family:PfI;font-style:italic;src:url(assets/fonts/playfair-display-latin-400-italic.woff2);unicode-range:U+0000-00FF,U+2000-206F}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#000}
+.foot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card{position:absolute;inset:0;background:#0b0b0b;z-index:5;display:flex;align-items:center;justify-content:center;transform:translateY(1920px)}
+.card .frame{position:absolute;inset:46px;border:1px solid #c9a45c40}
+.card .glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 38% at 50% 50%,#2a221766,transparent 70%)}
+.orn{position:absolute;top:760px;left:505px;width:70px}
+.txt{position:relative;font-family:Onest;font-weight:500;font-size:86px;line-height:1.14;letter-spacing:-.025em;color:#f2ece2;text-align:center}
+.ln{overflow:hidden;padding-bottom:10px}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom}
+.wi{display:inline-block}
+.acc{font-family:PfI;font-style:italic;color:#c9a45c;font-size:1.12em;letter-spacing:0}
+.rule{position:absolute;top:1150px;left:230px;width:620px;height:12px}
+.rule i{position:absolute;top:5px;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,#c9a45c,transparent)}
+.rule b{position:absolute;top:0;left:304px;width:12px;height:12px;background:#c9a45c;transform:rotate(45deg)}
+#endtxt{position:absolute;left:0;right:0;top:1150px;text-align:center;z-index:6}
+.e1{font-family:Onest;font-weight:500;font-size:64px;letter-spacing:-.02em;color:#f2ece2}
+.e2{margin-top:18px;font-family:Onest;font-weight:500;font-size:46px;color:#ffffffb0}
+#grainwrap{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none;opacity:.07;mix-blend-mode:screen}
+#grain{position:absolute;left:0;top:0;width:1300px;height:2140px;background:url(assets/grain.png);background-size:270px}
+</style></head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="20.5" data-width="1080" data-height="1920" data-fps="30">
+<video id="v-shatter" class="clip foot" src="assets/shatter.mp4" muted playsinline data-start="1.22" data-duration="2.2800000000000002" data-track-index="0"></video>
+<video id="v-art" class="clip foot" src="assets/art.mp4" muted playsinline data-start="4.22" data-duration="1.78" data-track-index="0"></video>
+<video id="v-photo" class="clip foot" src="assets/photo.mp4" muted playsinline data-start="6.72" data-duration="1.78" data-track-index="0"></video>
+<video id="v-intro" class="clip foot" src="assets/intro.mp4" muted playsinline data-start="11.72" data-duration="5.28" data-track-index="0"></video>
+<img id="s0" class="clip foot" src="assets/saint-face.webp" data-start="9.5" data-duration="0.5" data-track-index="0">
+<img id="s1" class="clip foot" src="assets/saint-logo-fire.webp" data-start="10.0" data-duration="0.5" data-track-index="0">
+<img id="s2" class="clip foot" src="assets/saint-mirror.webp" data-start="10.5" data-duration="0.5" data-track-index="0">
+<video id="v-logo" class="clip" src="assets/rr-chrome.mp4" muted playsinline data-start="17.0" data-media-start="2.1667" data-duration="3.5" data-track-index="0" style="position:absolute;left:40px;top:560px;width:1000px;height:562px;mix-blend-mode:screen;opacity:0"></video>
+<audio id="music" src="assets/cut.wav" data-start="0" data-duration="20.5" data-volume="1"></audio>
+<div id="c0" class="card clip" data-start="0" data-duration="2.06"><div class="frame"></div><div class="glow"></div>
+<img class="orn" src="assets/ornament.webp"><div class="txt"><div class="ln"><span class="w"><span class="wi">Сделал</span></span> <span class="w"><span class="wi">себе</span></span> <span class="w"><span class="wi">сайт</span></span> </div><div class="ln"><span class="w"><span class="wi">с</span></span> <span class="w"><span class="wi">помощью</span></span> <span class="w acc"><span class="wi">AI</span></span> </div></div><div class="rule"><i></i><b></b></div></div>
+<div id="c1" class="card clip" data-start="3.2199999999999998" data-duration="1.56"><div class="frame"></div><div class="glow"></div>
+<img class="orn" src="assets/ornament.webp"><div class="txt"><div class="ln"><span class="w"><span class="wi">Каждая</span></span> <span class="w"><span class="wi">страница</span></span> </div><div class="ln"><span class="w"><span class="wi">отвечает</span></span> <span class="w"><span class="wi">на</span></span> <span class="w acc"><span class="wi">касание</span></span> </div></div><div class="rule"><i></i><b></b></div></div>
+<div id="c2" class="card clip" data-start="5.72" data-duration="1.56"><div class="frame"></div><div class="glow"></div>
+<img class="orn" src="assets/ornament.webp"><div class="txt"><div class="ln"><span class="w"><span class="wi">Фото</span></span> <span class="w"><span class="wi">проявляются,</span></span> </div><div class="ln"><span class="w"><span class="wi">как</span></span> <span class="w"><span class="wi">на</span></span> <span class="w acc"><span class="wi">плёнке</span></span> </div></div><div class="rule"><i></i><b></b></div></div>
+<div id="c3" class="card clip" data-start="8.22" data-duration="1.56"><div class="frame"></div><div class="glow"></div>
+<img class="orn" src="assets/ornament.webp"><div class="txt"><div class="ln"><span class="w"><span class="wi">Полная</span></span> <span class="w acc"><span class="wi">свобода</span></span> </div><div class="ln"><span class="w"><span class="wi">творчества</span></span> </div></div><div class="rule"><i></i><b></b></div></div>
+<div id="c4" class="card clip" data-start="10.72" data-duration="1.56"><div class="frame"></div><div class="glow"></div>
+<img class="orn" src="assets/ornament.webp"><div class="txt"><div class="ln"><span class="w"><span class="wi">И</span></span> <span class="w"><span class="wi">всё</span></span> <span class="w"><span class="wi">это</span></span> <span class="w"><span class="wi">—</span></span> </div><div class="ln"><span class="w"><span class="wi">один</span></span> <span class="w acc"><span class="wi">сайт</span></span> </div></div><div class="rule"><i></i><b></b></div></div>
+<div id="endtxt" class="clip" data-start="17" data-duration="3.5"><div class="e1">Ссылка на <span class="acc">портфолио</span></div><div class="e2">в шапке профиля</div></div>
+<div id="grainwrap"><div id="grain"></div></div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.set("#c0",{y:0},0);
+tl.fromTo("#c0 .wi",{y:130},{y:0,duration:.45,stagger:.08,ease:"power3.out"},0.02);
+tl.fromTo("#c0 .orn",{opacity:0,rotation:-60,scale:.6},{opacity:1,rotation:0,scale:1,duration:.5,ease:"power2.out"},0.0);
+tl.fromTo("#c0 .rule i",{scaleX:0},{scaleX:1,duration:.6,ease:"power2.out"},0.12);
+tl.fromTo("#c0 .rule b",{scale:0},{scale:1,duration:.3},0.2);
+tl.to("#c0",{y:-1920,duration:0.28,ease:"power3.in"},1.5);
+tl.fromTo("#c1",{y:1920},{y:0,duration:0.28,ease:"power3.out"},3.2199999999999998);
+tl.fromTo("#c1 .wi",{y:130},{y:0,duration:.45,stagger:.08,ease:"power3.out"},3.52);
+tl.fromTo("#c1 .orn",{opacity:0,rotation:-60,scale:.6},{opacity:1,rotation:0,scale:1,duration:.5,ease:"power2.out"},3.5);
+tl.fromTo("#c1 .rule i",{scaleX:0},{scaleX:1,duration:.6,ease:"power2.out"},3.62);
+tl.fromTo("#c1 .rule b",{scale:0},{scale:1,duration:.3},3.7);
+tl.to("#c1",{y:-1920,duration:0.28,ease:"power3.in"},4.5);
+tl.fromTo("#c2",{y:1920},{y:0,duration:0.28,ease:"power3.out"},5.72);
+tl.fromTo("#c2 .wi",{y:130},{y:0,duration:.45,stagger:.08,ease:"power3.out"},6.02);
+tl.fromTo("#c2 .orn",{opacity:0,rotation:-60,scale:.6},{opacity:1,rotation:0,scale:1,duration:.5,ease:"power2.out"},6.0);
+tl.fromTo("#c2 .rule i",{scaleX:0},{scaleX:1,duration:.6,ease:"power2.out"},6.12);
+tl.fromTo("#c2 .rule b",{scale:0},{scale:1,duration:.3},6.2);
+tl.to("#c2",{y:-1920,duration:0.28,ease:"power3.in"},7.0);
+tl.fromTo("#c3",{y:1920},{y:0,duration:0.28,ease:"power3.out"},8.22);
+tl.fromTo("#c3 .wi",{y:130},{y:0,duration:.45,stagger:.08,ease:"power3.out"},8.52);
+tl.fromTo("#c3 .orn",{opacity:0,rotation:-60,scale:.6},{opacity:1,rotation:0,scale:1,duration:.5,ease:"power2.out"},8.5);
+tl.fromTo("#c3 .rule i",{scaleX:0},{scaleX:1,duration:.6,ease:"power2.out"},8.62);
+tl.fromTo("#c3 .rule b",{scale:0},{scale:1,duration:.3},8.7);
+tl.to("#c3",{y:-1920,duration:0.28,ease:"power3.in"},9.5);
+tl.fromTo("#c4",{y:1920},{y:0,duration:0.28,ease:"power3.out"},10.72);
+tl.fromTo("#c4 .wi",{y:130},{y:0,duration:.45,stagger:.08,ease:"power3.out"},11.02);
+tl.fromTo("#c4 .orn",{opacity:0,rotation:-60,scale:.6},{opacity:1,rotation:0,scale:1,duration:.5,ease:"power2.out"},11.0);
+tl.fromTo("#c4 .rule i",{scaleX:0},{scaleX:1,duration:.6,ease:"power2.out"},11.12);
+tl.fromTo("#c4 .rule b",{scale:0},{scale:1,duration:.3},11.2);
+tl.to("#c4",{y:-1920,duration:0.28,ease:"power3.in"},12.0);
+tl.fromTo("#v-shatter",{scale:1.12},{scale:1,duration:2.2800000000000002,ease:"power2.out"},1.22);
+tl.fromTo("#v-art",{scale:1.12},{scale:1,duration:1.78,ease:"power2.out"},4.22);
+tl.fromTo("#v-photo",{scale:1.12},{scale:1,duration:1.78,ease:"power2.out"},6.72);
+tl.fromTo("#v-intro",{scale:1.12},{scale:1,duration:5.28,ease:"power2.out"},11.72);
+tl.fromTo("#s0",{scale:1.14},{scale:1,duration:.5,ease:"power1.out"},9.5);
+tl.fromTo("#s1",{scale:1.14},{scale:1,duration:.5,ease:"power1.out"},10.0);
+tl.fromTo("#s2",{scale:1.14},{scale:1,duration:.5,ease:"power1.out"},10.5);
+tl.fromTo("#v-logo",{opacity:0,scale:.9},{opacity:1,scale:1,duration:.4,ease:"power2.out"},17);
+tl.fromTo("#endtxt .e1",{opacity:0,y:30},{opacity:1,y:0,duration:.5,ease:"power3.out"},17.2);
+tl.fromTo("#endtxt .e2",{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:"power3.out"},17.45);
+for (let k=0;k<62;k++) tl.set("#grain",{x:-((k*137)%220),y:-((k*89)%220)},k/3);
+window.__timelines["main"] = tl;
+</script>
+</body></html>

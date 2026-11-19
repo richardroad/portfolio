@@ -21,3 +21,9 @@ Other promo made: Instagram warm-up stories `promo/stories/01-05.png` (teaser, p
 Strategy docs (Claude Docs):
 - TikTok: https://claude.ai/artifact/VE8Na7rzJ2WS9buVqKjkS2
 - Instagram: https://claude.ai/artifact/HjiJbXGQQbkE6URa5dmqua
+
+## HyperFrames trial (`hyperframes/index.html`)
+- Same story as `Cut.tsx` (v3). Built as HTML + GSAP for `npx hyperframes@0.9.69 render`.
+- Cards slide in and out like curtains, the text rises word by word, and film grain sits over everything.
+- Needs `assets/` (footage clips cut from the capture frames, fonts, `cut.wav`, `gsap.min.js`, `grain.png`). These are not committed; rebuild them as in `Cut.tsx`.
+- Telemetry disabled with `npx hyperframes telemetry disable`.
