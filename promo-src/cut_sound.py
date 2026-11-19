@@ -1,7 +1,7 @@
 # Soundtrack for Cut.tsx (card/clip edit). 120 BPM; cut times in seconds must match ITEMS in Cut.tsx.
 import numpy as np, wave
-SR=44100; DUR=18.5; N=int(SR*DUR); t=np.arange(N)/SR; rng=np.random.default_rng(7)
-CARDS=[0,3.5,6.0,8.5,11.0]; CLIPS=[1.5,4.5,7.0,9.5,12.0]; END=15.0; PAGE=13.77
+SR=44100; DUR=20.5; N=int(SR*DUR); t=np.arange(N)/SR; rng=np.random.default_rng(7)
+CARDS=[0,3.5,6.0,8.5,11.0]; CLIPS=[1.5,4.5,7.0,9.5,12.0]; END=17.0; PAGE=13.77
 L=np.zeros(N); R=np.zeros(N)
 def add(s,pan=0,g=1,at=0):
     i=int(at*SR); s=s[:max(0,N-i)]; L[i:i+len(s)]+=s*g*np.sqrt((1-pan)/2); R[i:i+len(s)]+=s*g*np.sqrt((1+pan)/2)
@@ -25,6 +25,8 @@ def bloom(at,notes,g=.10,d=1.6):
 CH=[(293.66,369.99,440,554.37),(246.94,293.66,369.99,440),(220,277.18,329.63,440),(196,246.94,293.66,369.99),(220,293.66,369.99,493.88)]
 for c,ch in zip(CARDS,CH): bloom(c,ch)
 for c in CLIPS: boom(c); whoosh(c)
+SLIDES=[10.0,10.5]  # Sain't image changes
+for c in SLIDES: boom(c,.25,5); whoosh(c,.06)
 # glass burst on the shatter clip
 n=hp(rng.standard_normal(int(.7*SR)),2500)*np.exp(-np.linspace(0,7,int(.7*SR))); add(n/np.abs(n).max(),0,.16,1.52)
 # swell into the home page, no bells
