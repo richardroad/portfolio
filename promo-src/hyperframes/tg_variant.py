@@ -8,7 +8,7 @@ s = re.sub(r'data-composition-id="main" data-start="0" data-duration="[\d.]+"', 
 s = s.replace('data-start="13.0" data-media-start="2.1667" data-duration="3.5"', f'data-start="{END}" data-media-start="0.17" data-duration="{TOTAL-END}"')
 s = s.replace('style="position:absolute;left:40px;top:560px;width:1000px;height:562px;mix-blend-mode:screen;opacity:0"', 'style="position:absolute;left:220px;top:250px;width:640px;height:360px;mix-blend-mode:screen;opacity:0"')
 s = re.sub(r'<audio id="music" src="assets/cut.wav" data-start="0" data-duration="[\d.]+"', f'<audio id="music" src="assets/cut_tg.wav" data-start="0" data-duration="{TOTAL}"', s)
-items = ['Сайты-портфолио', 'CV и резюме', 'Личный бренд', 'AI-визуалы и видео']
+items = ['Сайты-портфолио', 'CV и резюме', 'Личный бренд', 'AI-визуалы и видео', 'Консультации по AI']
 end = (f'<div id="endtxt" class="clip" data-start="{END}" data-duration="{TOTAL-END}">'
        '<div class="k">Что я делаю</div>'
        + ''.join(f'<div class="it"><b></b>{t}</div>' for t in items) +
@@ -16,7 +16,7 @@ end = (f'<div id="endtxt" class="clip" data-start="{END}" data-duration="{TOTAL-
        f'<div class="ct ct1"><span class="lb">Instagram</span> @{IG}</div>'
        f'<div class="ct"><span class="lb">Telegram</span> @{TG}</div></div>')
 s = re.sub(r'<div id="endtxt".*?</div></div>', end, s, count=1, flags=re.S)
-css = '''#endtxt{position:absolute;left:0;right:0;top:690px;text-align:center;z-index:6;font-family:Onest;font-weight:500}
+css = '''#endtxt{position:absolute;left:0;right:0;top:650px;text-align:center;z-index:6;font-family:Onest;font-weight:500}
 .k{font-size:30px;letter-spacing:.32em;text-transform:uppercase;color:#c9a45c;margin-bottom:34px}
 .it{font-size:58px;letter-spacing:-.02em;color:#f2ece2;line-height:1.5;display:flex;align-items:center;justify-content:center;gap:24px}
 .it b{width:12px;height:12px;background:#c9a45c;transform:rotate(45deg);display:inline-block}
