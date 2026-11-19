@@ -60,6 +60,8 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Page transitions: cross-document View Transitions. The old page fades to black, the new one surfaces; no effect in browsers without support.
 - Link preview (og:image) = img/og-rr.jpg: the HQ chrome RR on black, nothing else (renamed from og.jpg so messengers refetch).
 
+- Body paragraphs are justified on every page (user's choice), with hyphenation; the last line stays left. Not applied to headings, labels, centred lines, the Brautigan poem or the manifesto.
+
 ## Pending / ideas
 - Case results for Sain't/Avito (numbers, quotes), Avito video link.
 - Shimmer-free consistency across pages (shared type/gesture), reduce reliance on generic gothic/chrome/neon tropes.

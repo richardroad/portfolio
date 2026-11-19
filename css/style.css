@@ -733,3 +733,11 @@ main > .case-head:first-child { margin-top: clamp(30px, 4vw, 60px); }
 .ai .copy.statement .lead { text-transform: uppercase; letter-spacing: .08em; font-size: clamp(15px, 1.7vw, 18px); line-height: 1.55; }
 .ai .copy.statement .more summary { justify-content: center; }
 .ai .copy.statement .more > div { text-align: left; }
+
+/* ---------- Body text justified on every page (user's choice): even left and right edges, words hyphenate, last line stays left.
+   Not applied to headings, labels, centred lines, the Brautigan poem or the manifesto stanzas. ---------- */
+.ai .copy:not(.statement) p, .ai .more > div p, .ai .result-note p, .ai-cta-text,
+.p-notes p, .caption p, .first-text p, .offer-list .d {
+  text-align: justify; text-align-last: left; -webkit-hyphens: auto; hyphens: auto; hyphenate-limit-chars: 6 3 3;
+}
+.ai .copy.statement .more > div p { text-align: justify; text-align-last: left; }
