@@ -27,3 +27,7 @@ Strategy docs (Claude Docs):
 - Cards slide in and out like curtains, the text rises word by word, and film grain sits over everything.
 - Needs `assets/` (footage clips cut from the capture frames, fonts, `cut.wav`, `gsap.min.js`, `grain.png`). These are not committed; rebuild them as in `Cut.tsx`.
 - Telemetry disabled with `npx hyperframes telemetry disable`.
+- v6 asset notes:
+  - `assets/home.mp4` is built from 1-intro frames 113–185 at 0.8× with blended frames. It skips the wing sheen, and the astrolabes are frozen from frame 150 to stop shimmer.
+  - `assets/rr-chrome.mp4` is the 20 fps logo motion-interpolated to 30 fps (`ffmpeg minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1,fps=30`).
+  - `assets/shatter.mp4` is rebuilt from `img/shatter/l` source frames (13→150), so it has no capture jitter. A gentle GSAP shake is added in gen.py.
