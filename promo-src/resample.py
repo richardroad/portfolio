@@ -15,7 +15,9 @@ for f in os.listdir(out):
 cache = {}
 def frame(i):
     if i not in cache:
-        cache[i] = np.asarray(Image.open(os.path.join(src, '%04d.jpg' % i)).convert('RGB'), float)
+        if len(cache) > 4:  # keep memory small: only the frames around the current time
+            cache.pop(min(cache))
+        cache[i] = np.asarray(Image.open(os.path.join(src, '%04d.jpg' % i)).convert('RGB'), np.float32)
     return cache[i]
 n = int(meta['ms'] / 1000 * 30)
 for k in range(n):
