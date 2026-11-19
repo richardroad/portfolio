@@ -26,6 +26,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Red neon theme; footer buttons solid black inside with red neon frame; red cursor.
 - Typing swap "it's not ai → it's us."
 - Sain't: phones with haze that spreads in after the photo and breathes; short lead + Read more; Selected works carousel (15).
+- Avito result line: "Avito came back and booked us for the next project." Page ends with a CTA styled as an empty "Case 03 — Yours" (dashed numeral, "Your brand next?", red neon buttons: Start a project = mailto, DM on Instagram).
 - Avito: dark intro (white wordmark, pulsing dots), facts strip, Film 01 (img/avito-film-1.mp4, 720p, tap to play with sound; second film pending), Frames carousel (edge strips cropped), Process carousel (6 steps).
 
 ## Photography (photography.html)
@@ -50,6 +51,11 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - "First light": first AI image (DALL·E 2), gold veins glint (img/art/first-light-mask.webp). Living print: red/cyan copies drift apart slightly (RGB split) under moving film grain (img/art/grain.png).
 - Manifesto replaced (user's pick "3a"): epigraph = last stanza of Richard Brautigan's "All Watched Over by Machines of Loving Grace" (1967), then: "He wrote that before any of this existed. / The machines are here now. Loving grace is still our part of the job." Stanzas warm up at mid-screen. Signature "Richard Road" in gold #c9a45c (user's choice, matches the buttons). Manifesto line breaks keep a space so text never runs together on phones.
 - Sain't result line added: Instagram from zero, near-daily merch sales, paid back + profit in a few months, paused by the war.
+
+## Site-wide
+- Back/Next at the bottom of pages are quiet text links (no frames), with an underline that draws on hover.
+- Page transitions: cross-document View Transitions. The old page fades to black, the new one surfaces; no effect in browsers without support.
+- Link preview (og:image) = img/og-rr.jpg: the HQ chrome RR on black, nothing else (renamed from og.jpg so messengers refetch).
 
 ## Pending / ideas
 - Case results for Sain't/Avito (numbers, quotes), Avito video link.
