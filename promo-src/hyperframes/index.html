@@ -27,7 +27,9 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 #endtxt{position:absolute;left:0;right:0;top:1150px;text-align:center;z-index:6}
 .e1{font-family:Onest;font-weight:500;font-size:64px;letter-spacing:-.02em;color:#f2ece2}
 .e2{margin-top:18px;font-family:Onest;font-weight:500;font-size:46px;color:#ffffffb0}
-#grainwrap{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none;opacity:.16;mix-blend-mode:overlay}
+#grainwrap{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none;opacity:.1;mix-blend-mode:overlay}
+#grainlift{position:absolute;inset:0;z-index:51;overflow:hidden;pointer-events:none;opacity:.045;mix-blend-mode:screen}
+#grain2{position:absolute;left:-120px;top:-90px;width:1300px;height:2140px;background:url(assets/grain.png);background-size:300px}
 #grain{position:absolute;left:0;top:0;width:1300px;height:2140px;background:url(assets/grain.png);background-size:270px}
 </style></head>
 <body>
@@ -47,6 +49,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 <img class="orn" src="assets/ornament.webp"><div class="txt"><div class="ln"><span class="w"><span class="wi">Полная</span></span> <span class="w acc"><span class="wi">свобода</span></span> </div><div class="ln"><span class="w"><span class="wi">творчества</span></span> </div></div><div class="rule"><i></i><b></b></div></div>
 <div id="endtxt" class="clip" data-start="13.0" data-duration="3.5"><div class="e1">Ссылка на <span class="acc">портфолио</span></div><div class="e2">в шапке профиля</div></div>
 <div id="grainwrap"><div id="grain"></div></div>
+<div id="grainlift"><div id="grain2"></div></div>
 </div>
 <script>
 window.__timelines = window.__timelines || {};
@@ -128,6 +131,7 @@ tl.fromTo("#v-logo",{opacity:0,scale:.9},{opacity:1,scale:1,duration:.4,ease:"po
 tl.fromTo("#endtxt .e1",{opacity:0,y:30},{opacity:1,y:0,duration:.5,ease:"power3.out"},13.2);
 tl.fromTo("#endtxt .e2",{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:"power3.out"},13.45);
 for (let k=0;k<51;k++) tl.set("#grain",{x:-((k*137)%220),y:-((k*89)%220)},k/3);
+for (let k=0;k<70;k++) tl.set("#grain2",{x:-((k*173)%240),y:-((k*61)%240)},k/3);
 window.__timelines["main"] = tl;
 </script>
 </body></html>

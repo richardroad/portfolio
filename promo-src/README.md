@@ -31,4 +31,4 @@ Strategy docs (Claude Docs):
   - `assets/home.mp4` is built from 1-intro frames 85–185 at real speed, no blending: the astrolabes turn and the wing sheen passes (user wants both). Capture frame 152 (menu text drops out) is replaced by the average of 151 and 153.
   - `assets/rr-chrome.mp4` is the 20 fps logo motion-interpolated to 30 fps (`ffmpeg minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1,fps=30`).
   - `assets/shatter.mp4` is rebuilt from `img/shatter/l` source frames (13→150), so it has no capture jitter. A gentle GSAP shake is added in gen.py.
-- v9: the grain is `overlay` at .16 with mid-grey noise, so blacks stay black. It used to be `screen` at .07, which lifted blacks and washed out colour. `#v-home` gets saturate(1.12) and contrast(1.04).
+- v10: two grain layers. One is `overlay` at .1 for texture; the other is `screen` at .045, which lifts blacks only a little. v8 (screen only) washed colour out and v9 (overlay only) crushed the rose. `#v-home` gets saturate(1.12) and contrast(1.04).
