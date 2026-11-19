@@ -22,6 +22,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Old Contact/Instagram/Email icon links were removed on purpose. Next button: serif caps, gold arrow, not too close to the edge.
 
 ## AI Production (ai-production.html)
+- AI hero sign "AI PRODUCTION" strikes like a real neon tube on entry (blinks, catches, holds with a glow), then buzzes briefly every ~11 s. It stays dark while the shard preloader is on (html.pre) and strikes when the page is revealed.
 - AI hero ends with a quiet cue "SELECTED CASES" + a hairline with a red light dropping down, so the black gap reads as intentional.
 - Case headers (premium): a huge outlined red-neon numeral (01/02) draws itself and flickers on, then hums; kicker "CASE 01 — 2025", big Anta title, pill tags (Sain't: Brand from zero · AI visuals · Merch · Instagram; Avito: AI promo films · Real Estate · Auto · Vertical cuts), and a light running along the rule. Reduced motion → static. Numerals: SVG viewBox has room around the glyphs, dash 4000 (WebKit dashes the whole text as one path, a short dash left parts invisible), glow filter on the <svg>, not on <text> (Safari clips it).
 - Red neon theme; footer buttons solid black inside with red neon frame; red cursor.
