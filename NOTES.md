@@ -47,7 +47,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Concept "Where light learns its shape" (shadow / self-acceptance). Hero: rose image in a dark room lit by a torch (pointer, finger, idle drift).
 - "Embers" triptych 2025 (confetti canal · rose centre · red canopy), iPhone + AI, tilts as one altarpiece on desktop, stacked on phones.
 - "First light": first AI image (DALL·E 2), gold veins glint (img/art/first-light-mask.webp). Living print: red/cyan copies drift apart slightly (RGB split) under moving film grain (img/art/grain.png).
-- Manifesto (English), stanzas warm up at mid-screen. Signature "Richard Road" in gold #c9a45c (user's choice, matches the buttons). Manifesto line breaks keep a space so text never runs together on phones.
+- Manifesto replaced (user's pick "3a"): epigraph = last stanza of Richard Brautigan's "All Watched Over by Machines of Loving Grace" (1967), then: "He wrote that before any of this existed. / The machines are here now. Loving grace is still our part of the job." Stanzas warm up at mid-screen. Signature "Richard Road" in gold #c9a45c (user's choice, matches the buttons). Manifesto line breaks keep a space so text never runs together on phones.
 - Sain't result line added: Instagram from zero, near-daily merch sales, paid back + profit in a few months, paused by the war.
 
 ## Pending / ideas
