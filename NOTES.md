@@ -22,7 +22,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Old Contact/Instagram/Email icon links were removed on purpose. Next button: serif caps, gold arrow, not too close to the edge.
 
 ## AI Production (ai-production.html)
-- Case years: Sain't 2025, Avito 2026.
+- Case headers (premium): a huge outlined red-neon numeral (01/02) draws itself and flickers on, then hums; kicker "CASE 01 — 2025", big Anta title, pill tags (Sain't: Brand from zero · AI visuals · Merch · Instagram; Avito: AI promo films · Real Estate · Auto · Vertical cuts), and a light running along the rule. Reduced motion → static.
 - Red neon theme; footer buttons solid black inside with red neon frame; red cursor.
 - Typing swap "it's not ai → it's us."
 - Sain't: phones with haze that spreads in after the photo and breathes; short lead + Read more; Selected works carousel (15).

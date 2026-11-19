@@ -243,8 +243,40 @@ a { color: inherit; text-decoration: none; }
 .ai-hero .swap span { display: inline-block; min-width: 1ch; }
 .ai-hero .swap .caret { width: .55ch; background: #cfe7df; animation: blink 1s steps(1) infinite; margin-left: 2px; height: 1em; vertical-align: -0.12em; }
 
-.case-head { margin-top: clamp(60px, 9vw, 120px); }
-.case-head h2 { margin: 0 0 6px; font-weight: 400; font-size: clamp(20px, 2.4vw, 28px); text-transform: uppercase; letter-spacing: .04em; }
+/* case header: a huge outlined neon numeral that draws itself and flickers on, then title, tags and a light running along the rule */
+.case-head { position: relative; display: grid; grid-template-columns: auto 1fr; align-items: end; gap: clamp(14px, 3vw, 40px); margin-top: clamp(80px, 11vw, 150px); padding-bottom: clamp(18px, 2.4vw, 28px); }
+.ch-num { width: clamp(110px, 15vw, 200px); height: auto; overflow: visible; }
+.ch-num text { font-family: "Anta", sans-serif; font-size: 118px; letter-spacing: -.02em; fill: transparent; stroke: var(--neon-red); stroke-width: 1.4; filter: drop-shadow(0 0 6px #ff3b3baa) drop-shadow(0 0 22px #ff3b3b55); stroke-dasharray: 620; stroke-dashoffset: 0; }
+.ch-body { padding-bottom: clamp(4px, 1vw, 12px); min-width: 0; }
+.ch-kicker { display: flex; align-items: center; gap: 14px; margin: 0 0 clamp(8px, 1.2vw, 14px); font-family: var(--mono); font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--ink-dim); }
+.ch-kicker i { flex: 0 0 clamp(28px, 6vw, 70px); height: 1px; background: linear-gradient(90deg, #ff3b3b, #ff3b3b22); box-shadow: 0 0 6px #ff3b3b88; }
+.ch-kicker span:last-child { color: #ffb3b3; text-shadow: 0 0 10px #ff3b3b66; }
+.ch-title { margin: 0; font-family: "Anta", sans-serif; font-weight: 400; font-size: clamp(42px, 7.5vw, 96px); line-height: .92; letter-spacing: .01em; color: #f4efe8; text-shadow: 0 0 30px #ff3b3b22; }
+.ch-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: clamp(14px, 1.8vw, 20px) 0 0; padding: 0; }
+.ch-tags span { padding: 6px 12px; border: 1px solid #ff3b3b44; border-radius: 999px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #d9d2c8; background: linear-gradient(180deg, #ff3b3b10, transparent); }
+.ch-line { position: absolute; left: var(--gutter-l, 16px); right: var(--gutter-r, 16px); bottom: 0; height: 1px; background: linear-gradient(90deg, #ff3b3b, #ff3b3b33 40%, #8d949744); overflow: hidden; }
+.ch-line b { position: absolute; top: -1px; left: 0; width: 22%; height: 3px; background: linear-gradient(90deg, transparent, #ffd0d0, transparent); filter: blur(.5px); box-shadow: 0 0 14px #ff3b3b; transform: translateX(-120%); }
+.js .case-head.reveal { transform: none; }
+.js .case-head .ch-num text { stroke-dashoffset: 620; opacity: .2; }
+.js .case-head.in .ch-num text { animation: ch-draw 1.8s cubic-bezier(.6,.1,.2,1) .1s forwards, ch-flicker 2.6s steps(1) 1.6s forwards, ch-hum 5s ease-in-out 4.4s infinite; }
+.js .case-head .ch-kicker, .js .case-head .ch-title, .js .case-head .ch-tags { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.js .case-head.in .ch-kicker { opacity: 1; transform: none; transition-delay: .5s; }
+.js .case-head.in .ch-title { opacity: 1; transform: none; transition-delay: .7s; }
+.js .case-head.in .ch-tags { opacity: 1; transform: none; transition-delay: .95s; }
+.js .case-head.in .ch-line b { animation: ch-run 2.4s cubic-bezier(.5,0,.3,1) 1.1s; }
+@keyframes ch-draw { to { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes ch-flicker { 0% { opacity: 1; } 8% { opacity: .25; } 12% { opacity: 1; } 30% { opacity: .5; } 33%, 100% { opacity: 1; } }
+@keyframes ch-hum { 0%, 100% { filter: drop-shadow(0 0 6px #ff3b3baa) drop-shadow(0 0 22px #ff3b3b55); } 50% { filter: drop-shadow(0 0 9px #ff3b3bcc) drop-shadow(0 0 34px #ff3b3b77); } }
+@keyframes ch-run { from { transform: translateX(-120%); } to { transform: translateX(560%); } }
+@media (max-width: 640px) {
+  .case-head { grid-template-columns: 1fr; gap: 0; }
+  .ch-num { width: 150px; margin-bottom: -6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .case-head .ch-num text { stroke-dashoffset: 0; opacity: 1; animation: none !important; }
+  .js .case-head .ch-kicker, .js .case-head .ch-title, .js .case-head .ch-tags { opacity: 1; transform: none; transition: none; }
+  .ch-line b { display: none; }
+}
 .rule { height: 6px; border-block: 1px solid var(--stone); opacity: .8; }
 .rule.center-title { display: grid; place-items: center; height: auto; padding-block: 10px; font-size: clamp(16px, 2vw, 22px); text-transform: uppercase; letter-spacing: .06em; border-width: 2px; }
 
@@ -620,8 +652,6 @@ a { color: inherit; text-decoration: none; }
 
 @media (min-width: 641px) { .tagline::before { display: none; } }   /* desktop already has the stone dashes as a divider */
 @media (max-width: 640px) { .film .film-label { font-size: 9px; letter-spacing: .18em; } }
-.case-head h2 { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.case-head .yr { font-family: var(--mono); font-size: 12px; letter-spacing: .25em; color: var(--ink-dim); }
 .result-note { max-width: 680px; margin: 60px auto 0; text-align: center; }
 .result-note .lead { font-family: "Cormorant Garamond", var(--serif); font-style: italic; font-weight: 300; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.3; color: var(--ink); margin: 0; }
 .result-note .pause-note { margin-top: 22px; }
