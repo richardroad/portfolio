@@ -1,7 +1,7 @@
 # Soundtrack for Cut.tsx (card/clip edit). 120 BPM; cut times in seconds must match ITEMS in Cut.tsx.
 import numpy as np, wave
-SR=44100; DUR=20.5; N=int(SR*DUR); t=np.arange(N)/SR; rng=np.random.default_rng(7)
-CARDS=[0,3.5,6.0,8.5,11.0]; CLIPS=[1.5,4.5,7.0,9.5,12.0]; END=17.0; PAGE=13.77
+SR=44100; DUR=17.5; N=int(SR*DUR); t=np.arange(N)/SR; rng=np.random.default_rng(7)
+CARDS=[0,3.5,6.0,8.5]; CLIPS=[1.5,4.5,7.0,9.5]; END=14.0; PAGE=11.0
 L=np.zeros(N); R=np.zeros(N)
 def add(s,pan=0,g=1,at=0):
     i=int(at*SR); s=s[:max(0,N-i)]; L[i:i+len(s)]+=s*g*np.sqrt((1-pan)/2); R[i:i+len(s)]+=s*g*np.sqrt((1+pan)/2)
@@ -22,7 +22,7 @@ def tock(at,g=.22):  # dry wooden tick for text cards
 def bloom(at,notes,g=.10,d=1.6):
     tt=np.arange(int(d*SR))/SR; s=sum(np.sin(2*np.pi*f*tt)+.3*np.sin(2*np.pi*2*f*tt) for f in notes)
     env=np.minimum(tt/.18,1)*np.exp(-tt*1.4); s=lp(s*env,1800); add(s/np.abs(s).max(),0,g,at)
-CH=[(293.66,369.99,440,554.37),(246.94,293.66,369.99,440),(220,277.18,329.63,440),(196,246.94,293.66,369.99),(220,293.66,369.99,493.88)]
+CH=[(293.66,369.99,440,554.37),(246.94,293.66,369.99,440),(220,277.18,329.63,440),(196,246.94,293.66,369.99)]
 for c,ch in zip(CARDS,CH): bloom(c,ch)
 for c in CLIPS: boom(c); whoosh(c)
 SLIDES=[10.0,10.5]  # Sain't image changes
@@ -30,7 +30,7 @@ for c in SLIDES: boom(c,.25,5); whoosh(c,.06)
 # glass burst on the shatter clip
 n=hp(rng.standard_normal(int(.7*SR)),2500)*np.exp(-np.linspace(0,7,int(.7*SR))); add(n/np.abs(n).max(),0,.16,1.52)
 # swell into the home page, no bells
-d=PAGE-12.4; r=lp(hp(rng.standard_normal(int(d*SR)),600),5000); r*=np.linspace(0,1,len(r))**2.2; r/=np.abs(r).max(); add(r,0,.09,12.4)
+d=PAGE-10.0; r=lp(hp(rng.standard_normal(int(d*SR)),600),5000); r*=np.linspace(0,1,len(r))**2.2; r/=np.abs(r).max(); add(r,0,.07,10.0)
 boom(PAGE,.5,2.4)
 boom(END,.6,2.2); tt=np.arange(int(3.4*SR))/SR; ch=lp(sum(np.sin(2*np.pi*f*tt) for f in (73.42,110,146.83,220)),600)*np.exp(-tt*.8); add(ch/np.abs(ch).max(),0,.16,END)
 fade=np.ones(N); fade[-int(2.0*SR):]=np.linspace(1,0,int(2.0*SR)); L*=fade; R*=fade
