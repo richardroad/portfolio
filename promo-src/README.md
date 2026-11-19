@@ -32,3 +32,6 @@ Strategy docs (Claude Docs):
   - `assets/rr-chrome.mp4` is the 20 fps logo motion-interpolated to 30 fps (`ffmpeg minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1,fps=30`).
   - `assets/shatter.mp4` is rebuilt from `img/shatter/l` source frames (13→150), so it has no capture jitter. A gentle GSAP shake is added in gen.py.
 - v11 (final): the original single grain layer (`screen` at .07, uniform noise 540px) is back. The v10 second layer left an uncovered flickering stripe at the right edge (it was 1300px wide and shifted too far). Home shot runs at real speed (astrolabes turn, wing sheen passes) with `#v-home` saturate(1.12) and contrast(1.04).
+- v12: the AI and Photography montage clips were re-captured after site changes (AI hero now has the "Selected cases" cue; Photography now opens with @p1nskii).
+  - Capture: `node rec.js <dir> 34`, then `python3 resample.py <dir>/raw/<clip> <dir>/clips/<clip>` gives even 30 fps.
+  - Ranges: m-ai is 4-ai frames 6–46; m-photo is 5-photo frames 70–110.
