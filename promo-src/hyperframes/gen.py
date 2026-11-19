@@ -7,8 +7,8 @@ cards=[(0.0,1.5,['Сделал себе сайт','с помощью AI'],'AI'),
        (6.0,1.0,['Полная свобода','творчества'],'свобода')]
 # (name, start, duration, entry): entry 'card' = revealed by curtain, 'fade' = crossfades over previous page
 clips=[('shatter',1.5,2.0,'card'),('art',4.5,1.5,'card'),
-       ('m-ai',7.0,1.0,'card'),('m-photo',8.0,1.0,'fade'),('m-art',9.0,1.0,'fade'),('home',10.0,3.0,'fade')]
-END=13.0; TOTAL=16.5
+       ('m-ai',7.0,1.0,'card'),('m-photo',8.0,1.0,'fade'),('home',9.0,3.0,'fade')]
+END=12.0; TOTAL=15.5
 h=[]
 for name,st,du,e in clips:
     pre = W if e=='card' else X
