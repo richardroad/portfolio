@@ -63,6 +63,8 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Body paragraphs are justified on every page (user's choice), with hyphenation; the last line stays left. Not applied to headings, labels, centred lines, the Brautigan poem or the manifesto.
 
 ## Pending / ideas
+- Desktop polish postponed on purpose (traffic comes from Instagram on phones); the user has a list of desktop tweaks for later.
+- Touch reactions for every page (to make the reel's "every page responds to touch" true): Photography dust scatters from the finger; AI Production neon flickers or glitches where touched.
 - Case results for Sain't/Avito (numbers, quotes), Avito video link.
 - Shimmer-free consistency across pages (shared type/gesture), reduce reliance on generic gothic/chrome/neon tropes.
 - Custom domain (later). Mom's Telegram decoupage shop as a case.
