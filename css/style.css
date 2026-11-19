@@ -719,11 +719,11 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) { .js .sub-head .ch-kicker, .js .sub-head .sub-title { opacity: 1; transform: none; transition: none; } }
 
 /* AI hero: a quiet cue that the cases begin below, so the black gap reads as intentional */
-.hero-cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); display: grid; justify-items: center; gap: 12px; }
+.hero-cue { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); display: grid; justify-items: center; gap: 12px; }
 .hero-cue span { font-family: var(--mono); font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #ffffff66; padding-left: .4em; }
 .hero-cue i { position: relative; width: 1px; height: 56px; background: linear-gradient(#ffffff30, #ffffff05); overflow: hidden; }
 .hero-cue i::after { content: ""; position: absolute; left: -1px; top: -18px; width: 3px; height: 18px; background: linear-gradient(transparent, #ff3b3b); box-shadow: 0 0 8px #ff3b3b; animation: cue-drop 2.4s cubic-bezier(.5,0,.5,1) infinite; }
 @keyframes cue-drop { to { transform: translateY(80px); } }
-.ai-hero { padding-bottom: 110px; }
-main > .case-head:first-child { margin-top: clamp(40px, 6vw, 80px); }
+.ai-hero { padding-bottom: 150px; }
+main > .case-head:first-child { margin-top: clamp(30px, 4vw, 60px); }
 @media (prefers-reduced-motion: reduce) { .hero-cue i::after { animation: none; } }
