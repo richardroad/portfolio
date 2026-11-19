@@ -17,7 +17,7 @@ export const ITEMS: Item[] = [
   { kind: 'clip', len: 45, clip: '2-art', from: 55 },
   { kind: 'card', len: 30, lines: ['Фото проявляются', 'в темноте'], accent: 'темноте' },
   { kind: 'clip', len: 45, clip: '5-photo', from: 30 },
-  { kind: 'card', len: 30, lines: ['Неон', 'для AI-кейсов'], accent: 'Неон' },
+  { kind: 'card', len: 30, lines: ['Полная свобода', 'творчества'], accent: 'свобода' },
   { kind: 'clip', len: 45, clip: '4-ai', from: 0 },
   { kind: 'card', len: 30, lines: ['Лого собирается', 'из осколков'], accent: 'осколков' },
   { kind: 'clip', len: 90, clip: '1-intro', from: 22 },
@@ -35,9 +35,18 @@ const T = {
 const Card: React.FC<{ lines: string[]; accent: string; theme: Theme }> = ({ lines, accent, theme }) => {
   const f = useCurrentFrame();
   const c = T[theme];
+  const orn = interpolate(f, [0, 10], [0, 1], { extrapolateRight: 'clamp', easing: ease });
+  const line = interpolate(f, [4, 16], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
   let k = 0;
   return (
     <AbsoluteFill style={{ background: c.bg, justifyContent: 'center', alignItems: 'center' }}>
+      {theme === 'black' && <>
+        <AbsoluteFill style={{ background: 'radial-gradient(ellipse 70% 38% at 50% 50%, #2a221766, transparent 70%)' }} />
+        <AbsoluteFill style={{ boxShadow: 'inset 0 0 0 46px #0b0b0b, inset 0 0 0 47px #c9a45c40' }} />
+        <Img src={staticFile('ornament.webp')} style={{ position: 'absolute', top: 760, width: 70, opacity: orn, transform: `translateY(${(1 - orn) * 14}px) rotate(${(1 - orn) * -40}deg)` }} />
+        <div style={{ position: 'absolute', top: 1150, width: 620 * line, height: 2, background: 'linear-gradient(90deg, transparent, #c9a45c, transparent)' }} />
+        <div style={{ position: 'absolute', top: 1144, width: 12, height: 12, background: '#c9a45c', transform: `rotate(45deg) scale(${line})` }} />
+      </>}
       <div style={{ fontFamily: 'Noto', fontWeight: 600, fontSize: 92, lineHeight: 1.12, color: c.fg, textAlign: 'center', letterSpacing: '-.01em' }}>
         {lines.map((ln, li) => (
           <div key={li} style={{ overflow: 'hidden', paddingBottom: 8 }}>
