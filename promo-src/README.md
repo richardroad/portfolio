@@ -28,6 +28,7 @@ Strategy docs (Claude Docs):
 - Needs `assets/` (footage clips cut from the capture frames, fonts, `cut.wav`, `gsap.min.js`, `grain.png`). These are not committed; rebuild them as in `Cut.tsx`.
 - Telemetry disabled with `npx hyperframes telemetry disable`.
 - v6 asset notes:
-  - `assets/home.mp4` is built from 1-intro frames 113–185 at 0.8× with blended frames. It skips the wing sheen, and the astrolabes are frozen from frame 150 to stop shimmer. Capture frame 152 (menu text drops out) is replaced by the average of 151 and 153.
+  - `assets/home.mp4` is built from 1-intro frames 85–185 at real speed, no blending: the astrolabes turn and the wing sheen passes (user wants both). Capture frame 152 (menu text drops out) is replaced by the average of 151 and 153.
   - `assets/rr-chrome.mp4` is the 20 fps logo motion-interpolated to 30 fps (`ffmpeg minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1,fps=30`).
   - `assets/shatter.mp4` is rebuilt from `img/shatter/l` source frames (13→150), so it has no capture jitter. A gentle GSAP shake is added in gen.py.
+- v9: the grain is `overlay` at .16 with mid-grey noise, so blacks stay black. It used to be `screen` at .07, which lifted blacks and washed out colour. `#v-home` gets saturate(1.12) and contrast(1.04).
