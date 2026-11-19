@@ -1,7 +1,7 @@
 # Soundtrack for Cut.tsx (card/clip edit). 120 BPM; cut times in seconds must match ITEMS in Cut.tsx.
 import numpy as np, wave
-SR=44100; DUR=15.5; N=int(SR*DUR); t=np.arange(N)/SR; rng=np.random.default_rng(7)
-CARDS=[0,3.5,6.0]; CLIPS=[1.5,4.5,7.0]; END=12.0; PAGE=9.0
+SR=44100; DUR=16.5; N=int(SR*DUR); t=np.arange(N)/SR; rng=np.random.default_rng(7)
+CARDS=[0,3.5,7.0]; CLIPS=[1.5,4.5,8.0]; END=13.0; PAGE=10.0
 L=np.zeros(N); R=np.zeros(N)
 def add(s,pan=0,g=1,at=0):
     i=int(at*SR); s=s[:max(0,N-i)]; L[i:i+len(s)]+=s*g*np.sqrt((1-pan)/2); R[i:i+len(s)]+=s*g*np.sqrt((1+pan)/2)
@@ -25,12 +25,12 @@ def bloom(at,notes,g=.10,d=1.6):
 CH=[(293.66,369.99,440,554.37),(246.94,293.66,369.99,440),(220,277.18,329.63,440),(196,246.94,293.66,369.99)]
 for c,ch in zip(CARDS,CH): bloom(c,ch)
 for c in CLIPS: boom(c); whoosh(c)
-SLIDES=[8.0]  # page-to-page crossfades
+SLIDES=[9.0]  # page-to-page crossfades
 for c in SLIDES: boom(c,.25,5); whoosh(c,.06)
 # glass burst on the shatter clip
 n=hp(rng.standard_normal(int(.7*SR)),2500)*np.exp(-np.linspace(0,7,int(.7*SR))); add(n/np.abs(n).max(),0,.16,1.52)
 # swell into the home page, no bells
-d=PAGE-8.0; r=lp(hp(rng.standard_normal(int(d*SR)),600),5000); r*=np.linspace(0,1,len(r))**2.2; r/=np.abs(r).max(); add(r,0,.07,8.0)
+d=PAGE-9.0; r=lp(hp(rng.standard_normal(int(d*SR)),600),5000); r*=np.linspace(0,1,len(r))**2.2; r/=np.abs(r).max(); add(r,0,.07,9.0)
 boom(PAGE,.5,2.4)
 boom(END,.6,2.2); tt=np.arange(int(3.4*SR))/SR; ch=lp(sum(np.sin(2*np.pi*f*tt) for f in (73.42,110,146.83,220)),600)*np.exp(-tt*.8); add(ch/np.abs(ch).max(),0,.16,END)
 fade=np.ones(N); fade[-int(2.0*SR):]=np.linspace(1,0,int(2.0*SR)); L*=fade; R*=fade

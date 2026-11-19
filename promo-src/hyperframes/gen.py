@@ -4,11 +4,11 @@ s=open('index.html').read()
 W=0.28; X=0.35  # card curtain, page crossfade
 cards=[(0.0,1.5,['Сделал себе сайт','с помощью AI'],'AI'),
        (3.5,1.0,['Каждая страница','отвечает на касание'],'касание'),
-       (6.0,1.0,['Полная свобода','творчества'],'свобода')]
+       (7.0,1.0,['Полная свобода','творчества'],'свобода')]
 # (name, start, duration, entry): entry 'card' = revealed by curtain, 'fade' = crossfades over previous page
-clips=[('shatter',1.5,2.0,'card'),('art',4.5,1.5,'card'),
-       ('m-ai',7.0,1.0,'card'),('m-photo',8.0,1.0,'fade'),('home',9.0,3.0,'fade')]
-END=12.0; TOTAL=15.5
+clips=[('shatter',1.5,2.0,'card'),('art',4.5,2.5,'card'),
+       ('m-ai',8.0,1.0,'card'),('m-photo',9.0,1.0,'fade'),('home',10.0,3.0,'fade')]
+END=13.0; TOTAL=16.5
 h=[]
 for name,st,du,e in clips:
     pre = W if e=='card' else X
@@ -36,7 +36,12 @@ for name,st,du,e in clips:
     if e=='card': js.append(f'tl.fromTo("#v-{name}",{{scale:1.12}},{{scale:1,duration:{du+W},ease:"power2.out"}},{st-W});')
     else:
         js.append(f'tl.fromTo("#v-{name}",{{opacity:0,scale:1.08}},{{opacity:1,scale:1,duration:{X},ease:"power2.inOut"}},{st-X});')
-        js.append(f'tl.to("#v-{name}",{{scale:.97,duration:{du},ease:"none"}},{st});' if name=='home' else '')
+        js.append(f'tl.to("#v-{name}",{{scale:1.04,duration:{du},ease:"none"}},{st});' if name=='home' else '')
+import math
+for k in range(int(1.6*30)):
+    t=1.5+k/30; amp=7*math.exp(-k/16)*(1 if k%2 else -1)*(0.6+0.4*abs(math.sin(k*1.7)))
+    js.append(f'tl.set("#v-shatter",{{y:{amp:.1f}}},{t:.3f});')
+js.append(f'tl.set("#v-shatter",{{y:0}},{1.5+1.6:.3f});')
 js.append(f'tl.fromTo("#v-logo",{{opacity:0,scale:.9}},{{opacity:1,scale:1,duration:.4,ease:"power2.out"}},{END});')
 js.append(f'tl.fromTo("#endtxt .e1",{{opacity:0,y:30}},{{opacity:1,y:0,duration:.5,ease:"power3.out"}},{END+0.2});')
 js.append(f'tl.fromTo("#endtxt .e2",{{opacity:0,y:20}},{{opacity:1,y:0,duration:.5,ease:"power3.out"}},{END+0.45});')
