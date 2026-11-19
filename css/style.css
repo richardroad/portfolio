@@ -147,7 +147,7 @@ a { color: inherit; text-decoration: none; }
   .astro img:first-child { left: calc(var(--as) * -.64); }
   .astro img:last-child { right: calc(var(--as) * -.64); transform: scaleX(-1); }
   /* wings slowly "breathe" (spread ~2%); the sheen layer moves with them so the light stays on the feathers */
-  .hero .wings, .hero .shine { transform-origin: 50% 45%; animation: breathe 6s ease-in-out infinite; will-change: transform; }
+  /* (replaced by the slow wing beat below) */
 }
 
 /* ---------- Home: portrait + profile ---------- */
@@ -765,3 +765,29 @@ main > .case-head:first-child { margin-top: clamp(30px, 4vw, 60px); }
 @media (prefers-reduced-motion: reduce) { .ai-hero .title { animation: none; filter: drop-shadow(0 0 12px #7fd6ff66); } }
 /* while the shard preloader is on screen the sign stays dark; it strikes the moment the page is revealed */
 html.pre .ai-hero .title { animation: none; opacity: .06; filter: brightness(.5) saturate(.4); }
+
+/* ---------- Home: the wings beat slowly. Each wing is a half of the same image, hinged at the spine under the logo;
+   the sheen is split the same way and moves with its wing, so the light stays on the feathers. ---------- */
+.hero .wings { background: none; }
+.hero .wings i { position: absolute; inset: 0; background: url(../img/wings.webp) center top / 100% auto no-repeat; }
+.hero .shine { -webkit-mask: none; mask: none; overflow: visible; }
+.hero .shine::before { content: none; }
+.hero .shine i { position: absolute; inset: 0; overflow: hidden;
+  -webkit-mask: url(../img/wings-mask.webp) center top / 100% auto no-repeat; mask: url(../img/wings-mask.webp) center top / 100% auto no-repeat; }
+.hero .shine i::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 300%;
+  background: linear-gradient(110deg, transparent 42%, #fff3d633 46%, #fff6e0 49%, #ffffff 50%, #fff6e0 51%, #fff3d633 54%, transparent 58%);
+  transform: translateX(-80%); will-change: transform; animation: sheen 9s ease-in-out 1.5s infinite;
+}
+.hero .wl { clip-path: inset(0 50% 0 0); }
+.hero .wr { clip-path: inset(0 0 0 50%); }
+.hero .wings i, .hero .shine i { transform-origin: 50% 42%; will-change: transform; }
+.hero .wl { animation: wing-l 3.6s ease-in-out infinite; }
+.hero .wr { animation: wing-r 3.6s ease-in-out infinite; }
+@keyframes wing-l { 0%, 100% { transform: none; } 50% { transform: rotate(4deg) translateY(-1%); } }
+@keyframes wing-r { 0%, 100% { transform: none; } 50% { transform: rotate(-4deg) translateY(-1%); } }
+@media (min-width: 641px) {
+  /* on wide screens the wings are much larger, so the beat is gentler */
+  @keyframes wing-l { 0%, 100% { transform: none; } 50% { transform: rotate(2deg) translateY(-.6%); } }
+  @keyframes wing-r { 0%, 100% { transform: none; } 50% { transform: rotate(-2deg) translateY(-.6%); } }
+}
