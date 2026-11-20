@@ -46,6 +46,25 @@
     addEventListener('keydown', () => { window.__rrUserScrolled = true; }, { once: true });
   }
 
+  // Home wings: open only once the wings image is decoded, the page-fade has finished and the preloader is gone,
+  // so the opening is seen in full and never stutters; replay it when the page comes back from the back/forward cache.
+  if (document.querySelector('.hero .wings')) {
+    let vtDone = Promise.resolve();
+    addEventListener('pagereveal', (e) => { if (e.viewTransition) vtDone = e.viewTransition.finished.catch(() => {}); });
+    const img = new Image(); img.src = 'img/wings.webp';
+    const loaded = img.decode ? img.decode().catch(() => {}) : new Promise((r) => { img.onload = img.onerror = r; });
+    const open = () => {
+      root.classList.remove('wings-go'); void root.offsetWidth;
+      requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('wings-go')));
+    };
+    (async () => {
+      await loaded; await new Promise((r) => setTimeout(r, 0)); await vtDone;
+      while (root.classList.contains('pre')) await new Promise((r) => setTimeout(r, 120));
+      open();
+    })();
+    addEventListener('pageshow', (e) => { if (e.persisted) open(); });
+  }
+
   // Preloader: shards of light fly in and assemble the RR mark, then the page is revealed.
   // Shown once per browser session; the inline script in <head> adds .pre when it should run.
   const pre = document.querySelector('.preloader');
