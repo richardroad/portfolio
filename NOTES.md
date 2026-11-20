@@ -14,7 +14,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 ## Home (index.html)
 - Preloader: shards assemble the RR mark (once per session).
 - Hero: wings + silver sheen; RR logo video `img/rr-chrome.mp4` is the ORIGINAL 800x450 Readymag clip (it loops perfectly). The HQ half-turn clip from the user did not loop well (crossfade looked odd) — rejected; only replace with a full 360° HQ render.
-- Wings beat slowly (user's pick from 4 recorded previews): each wing is a half of the same image hinged under the logo, rising about 4° on phones and 2° on desktop over a 3.6 s cycle. The silver sheen is split the same way and moves with its wing. The old "breathe" was replaced. Phones only: gold astrolabes turn at both edges of the menu (65% opacity); stone bars and road-marking dashes hidden.
+- Wings open once on arrival: each wing is a half of the same image hinged under the logo, folded in (rotateY ~78°) and spreading out over 2 s; the sheen is split and folds with them. They wait hidden while the shard preloader is on. The slow beat was tried and rejected ("looks artificial"); a realistic bending flap needs generated video (Seedance idea). Phones only: gold astrolabes turn at both edges of the menu (65% opacity); stone bars and road-marking dashes hidden.
 - Tagline in two lines: "AI creative & director" / "building visual worlds for brands and people".
 - Scroll-scrubbed shatter video (153 frames, ends on the cracked face, then Name / Age 32 / Based in Netherlands).
 - Offer block: "I turn ideas into images, films and places on the web." + 4 services (AI production, Creative direction, Personal websites, Personal brand) + gold "Work with me" (mailto) and "DM on Instagram".
