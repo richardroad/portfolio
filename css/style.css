@@ -789,3 +789,9 @@ html.pre .ai-hero .title { animation: none; opacity: .06; filter: brightness(.5)
 @keyframes wing-open-r { from { transform: perspective(700px) rotateY(-78deg) rotate(-10deg); opacity: 0; } 25% { opacity: 1; } to { transform: none; opacity: 1; } }
 /* while the shard preloader is on screen the wings wait folded, then open when the page is revealed */
 html.pre .hero .wl, html.pre .hero .wr { animation: none; opacity: 0; }
+/* the sheen starts at the spine and runs outward along each wing, towards the feather tips (left wing mirrored);
+   it fades in at the spine and out at the tips, and rests out of sight between passes */
+.hero .shine .wr::before { animation: sheen-out-r 9s ease-in-out 2.6s infinite; transform: translateX(-8%); opacity: 0; }
+.hero .shine .wl::before { animation: sheen-out-l 9s ease-in-out 2.6s infinite; transform: translateX(-60%) scaleX(-1); opacity: 0; }
+@keyframes sheen-out-r { 0% { transform: translateX(-36%); opacity: 0; } 6% { opacity: 1; } 34% { opacity: 1; } 40%, 100% { transform: translateX(-8%); opacity: 0; } }
+@keyframes sheen-out-l { 0% { transform: translateX(-32%) scaleX(-1); opacity: 0; } 6% { opacity: 1; } 34% { opacity: 1; } 40%, 100% { transform: translateX(-60%) scaleX(-1); opacity: 0; } }
