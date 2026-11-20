@@ -134,3 +134,8 @@ body.photo { background: var(--p-bg); color: var(--p-ink); }
 .s-sub-line { display: block; width: 1px; height: 38px; margin: 0 auto 14px; background: linear-gradient(transparent, #c9504a99); }
 .s-sub-name { margin: 0; font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: clamp(26px, 3.6vw, 36px); color: var(--p-ink); letter-spacing: .02em; }
 .s-sub .s-meta { margin-top: 6px; }
+
+/* two handles for one person: side by side on wide screens, stacked on phones */
+.s-names { margin: 0; display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; column-gap: .45em; }
+.s-names .s-amp { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 300; font-size: clamp(22px, 3vw, 34px); color: #c9504a; }
+@media (max-width: 640px) { .s-names { flex-direction: column; align-items: center; row-gap: 0; } .s-names .s-amp { line-height: 1; margin: -2px 0; } }

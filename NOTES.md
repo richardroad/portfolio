@@ -38,7 +38,7 @@ Owner: Richard Road — AI creative & director (not "photographer": shoots on ph
 - Tagline "portraits · soft light · quiet moments".
 - Series order (user's choice), photos surface out of the dark (not red):
   1. @p1nskii — "2024 · shot on 35mm · red" (3 frames: lying in red light full width, then bow + lighter pair)
-  2. @suzys.arts — "2025 · monochrome" (2) + sub-series "Violet Hour" "2025 · candlelight · colour" (2)
+  2. @suzys.arts & @suzys.photo (two handles, ampersand; stacked on phones) — "2025 · monochrome" (2) + sub-series "Violet Hour" "2025 · candlelight · colour" (2)
   3. @sachiko_________ — "2025 · shot on iPhone" (3 frames)
   4. @pukhalska_ — "2025 · once upon a river" (9 frames; fairy-tale mood). No frame counts in any series line.
 
